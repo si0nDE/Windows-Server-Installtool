@@ -15,6 +15,8 @@
         Write-Host "   ║═════════════                                                                  ║"
         Write-Host "   ║                                                                               ║"
         Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 0 ] Serverrollen und -features       ║"
+        Write-Host "   ║ [ 0 ] Netzwerkkonfiguration ändern   ║ [ 0 ] Remotedesktop einrichten         ║"
+        Write-Host "   ║ [ 0 ] Arbeitsgruppe/Domäne beitreten ║ [ 0 ]                                  ║"
         Write-Host "   ║ [ 0 ]                                ║ [ 0 ] Windows neustarten               ║"
         Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
         Write-Host "   ║                                                                               ║"
