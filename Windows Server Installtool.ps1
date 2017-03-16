@@ -3,7 +3,7 @@
 ### Startbildschirm ###
 function startbildschirm {
     Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool v1.1.0                                             ║"
+    Write-Host "║ Windows Server Installtool v1.2.0                                             ║"
     Write-Host "║                                                                               ║"
     Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
 }

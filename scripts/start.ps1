@@ -16,7 +16,7 @@
         Write-Host "   ║                                                                               ║"
         Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 0 ] Serverrollen und -features       ║"
         Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 0 ] Remotedesktop einrichten         ║"
-        Write-Host "   ║ [ 0 ] Arbeitsgruppe/Domäne beitreten ║ [ 0 ]                                  ║"
+        Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten ║ [ 0 ]                                  ║"
         Write-Host "   ║ [ 0 ]                                ║ [ 0 ] Windows neustarten               ║"
         Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
         Write-Host "   ║                                                                               ║"
@@ -38,6 +38,7 @@ function menueauswahl {
             switch ($input) {
                 '1' {hostnametool}
                 '2' {netzwerktool}
+                '3' {workgroupdomaintool}
                 'x' {exit}
             } pause }
         until ($input -eq 'x')
@@ -78,7 +79,7 @@ function hostnametool {
     menueauswahl
 }
 
-### Netzwerkkonfiguration ändern ###
+### Netzwerkkonfiguration ändern - Menü ###
 function netzwerktool {
     do {
         cls
@@ -269,6 +270,83 @@ cls
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
         Start-Sleep -Milliseconds 3000
         menueauswahl
+}
+
+### Arbeitsgruppe/Domäne beitreten - Menü ###
+function workgroupdomaintool {
+    do {
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Arbeitsgruppe/Domäne beitreten                                                ║"
+            Write-Host "   ╠══════════════════════════════════                                             ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Möchten Sie einer Arbeitsgruppe oder einer Domäne beitreten?                  ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ 1 ] Arbeitsgruppe                  ║ [ 2 ] Domäne                           ║"
+            Write-Host "   ║                                      ║                                        ║"
+            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host ""
+
+            $input = Read-Host "Bitte wählen Sie"
+
+            switch ($input) {
+                '1' {arbeitsgruppe_beitreten}
+                '2' {domaene_beitreten}
+                'x' {menueauswahl} # Zurück ins Hauptmenü #
+            } pause }
+        until ($input -eq 'x')
+}
+
+### Arbeitsgruppe beitreten ###
+function arbeitsgruppe_beitreten {
+cls
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Arbeitsgruppe beitreten                                                       ║"
+        Write-Host "   ╠═══════════════════════════                                                    ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ Diese Funktion ist derzeit noch in der Entwicklung!                           ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Start-Sleep -Milliseconds 3000
+        menueauswahl
+}
+
+### Domäne beitreten ###
+function domaene_beitreten {
+cls
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Domäne beitreten                                                              ║"
+        Write-Host "   ╠════════════════════                                                           ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ Geben Sie die Domäne ein, der Sie beitreten möchten...                        ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host ""
+        $neuedomaene = Read-Host "Neue Domäne"
+        $benutzername = Read-Host "Benutzername"
+        Write-Host ""
+        Start-Sleep -Milliseconds 1500
+        Add-Computer -DomainName $neuedomaene -Credential $neuedomaene\$benutzername
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Domäne beitreten                                                              ║"
+            Write-Host "   ╠════════════════════                                                           ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Die Arbeitsgruppe/Domäne wurde erfolgreich geändert.                          ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Ein Neustart ist erforderlich!                                                ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Start-Sleep -Milliseconds 3000
+    $passwort = ''
+    menueauswahl
 }
 
 ### Start ###
