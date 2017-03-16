@@ -14,12 +14,12 @@
         Write-Host "   ║ Hauptmenü                                                                     ║"
         Write-Host "   ║═════════════                                                                  ║"
         Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 0 ] Serverrollen und -features       ║"
-        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 0 ] Remotedesktop einrichten         ║"
-        Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten ║ [ 0 ]                                  ║"
-        Write-Host "   ║ [ 0 ]                                ║ [ 0 ] Windows neustarten               ║"
+        Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 5 ] Remotedesktop einrichten         ║"
+        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 6 ] Serverrollen und -features       ║"
+        Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten ║                                        ║"
+        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration    ║                                        ║"
         Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ [ 0 ] Windows neustarten                                                      ║"
         Write-Host "   ║ [ X ] Programm beenden                                                        ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
     }
@@ -36,16 +36,20 @@ function menueauswahl {
             $input = Read-Host "Bitte wählen Sie"
 
             switch ($input) {
+                '0' {neustarten}
                 '1' {hostnametool}
                 '2' {netzwerktool}
                 '3' {workgroupdomaintool}
+                '4' {iexplorer_sicherheit}
+                '5' {remotedesktoptool}
+                '6' {servermanager}
                 'x' {exit}
             } pause }
         until ($input -eq 'x')
 }
 
 ### Computerinfo abrufen ###
-    $computerinfo = Get-WmiObject -class win32_computersystem
+$computerinfo = Get-WmiObject -class win32_computersystem
 
 ### Hostnamen ändern ###
 function hostnametool {
@@ -259,7 +263,7 @@ function netzwerktool_ipv4 {
 
 ### Netzwerkkonfiguration (IPv6) ändern ###
 function netzwerktool_ipv6 {
-cls
+    cls
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Netzwerkkonfiguration ändern                                                  ║"
@@ -268,8 +272,8 @@ cls
         Write-Host "   ║ Diese Funktion ist derzeit noch in der Entwicklung!                           ║"
         Write-Host "   ║                                                                               ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Start-Sleep -Milliseconds 3000
-        menueauswahl
+    Start-Sleep -Milliseconds 3000
+    menueauswahl
 }
 
 ### Arbeitsgruppe/Domäne beitreten - Menü ###
@@ -290,7 +294,6 @@ function workgroupdomaintool {
             Write-Host "   ║                                                                               ║"
             Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
-
             $input = Read-Host "Bitte wählen Sie"
 
             switch ($input) {
@@ -303,22 +306,37 @@ function workgroupdomaintool {
 
 ### Arbeitsgruppe beitreten ###
 function arbeitsgruppe_beitreten {
-cls
+    cls
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Arbeitsgruppe beitreten                                                       ║"
         Write-Host "   ╠═══════════════════════════                                                    ║"
         Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Diese Funktion ist derzeit noch in der Entwicklung!                           ║"
+        Write-Host "   ║ Geben Sie die Arbeitsgruppe ein, der Sie beitreten möchten...                 ║"
         Write-Host "   ║                                                                               ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Start-Sleep -Milliseconds 3000
-        menueauswahl
+        Write-Host ""
+        $neuearbeitsgruppe = Read-Host "Neue Arbeitsgruppe"
+        Start-Sleep -Milliseconds 1500
+        $computerinfo.JoinDomainOrWorkgroup("$neuearbeitsgruppe") | Out-Null
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Arbeitsgruppe beitreten                                                       ║"
+            Write-Host "   ╠═══════════════════════════                                                    ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Die Arbeitsgruppe wurde erfolgreich geändert.                                 ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Ein Neustart ist erforderlich!                                                ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Start-Sleep -Milliseconds 3000
+    menueauswahl
 }
 
 ### Domäne beitreten ###
 function domaene_beitreten {
-cls
+    cls
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Domäne beitreten                                                              ║"
@@ -330,7 +348,6 @@ cls
         Write-Host ""
         $neuedomaene = Read-Host "Neue Domäne"
         $benutzername = Read-Host "Benutzername"
-        Write-Host ""
         Start-Sleep -Milliseconds 1500
         Add-Computer -DomainName $neuedomaene -Credential $neuedomaene\$benutzername
         cls
@@ -339,14 +356,249 @@ cls
             Write-Host "   ║ Domäne beitreten                                                              ║"
             Write-Host "   ╠════════════════════                                                           ║"
             Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Die Arbeitsgruppe/Domäne wurde erfolgreich geändert.                          ║"
+            Write-Host "   ║ Die Domäne wurde erfolgreich geändert.                                        ║"
             Write-Host "   ║                                                                               ║"
             Write-Host "   ║ Ein Neustart ist erforderlich!                                                ║"
             Write-Host "   ║                                                                               ║"
             Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
-    $passwort = ''
     menueauswahl
+}
+
+### Verstärkte Sicherheitskonfiguration für IE - Menü###
+function iexplorer_sicherheit {
+    do {
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE                                    ║"
+            Write-Host "   ╠══════════════════════════════════════════════                                 ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Wählen Sie den Benutzer, für den Sie die Sicherheitskonfiguration ändern      ║"
+            Write-Host "   ║ möchten:                                                                      ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ 1 ] Administratoren                ║ [ 2 ] Benutzer                         ║"
+            Write-Host "   ║                                      ║                                        ║"
+            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host ""
+            $input = Read-Host "Bitte wählen Sie"
+
+            switch ($input) {
+                '1' {iexplorer_adminsicherheit}
+                '2' {iexplorer_usersicherheit}
+                'x' {menueauswahl} # Zurück ins Hauptmenü #
+            } pause }
+        until ($input -eq 'x')
+}
+
+### Verstärkte Sicherheitskonfiguration für IE - Administratoren###
+function iexplorer_adminsicherheit {
+    do {
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Administratoren                  ║"
+            Write-Host "   ╠════════════════════════════════════════════════════════════════               ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Möchten Sie die verstärkte Sicherheitskonfiguration aktivieren                ║"
+            Write-Host "   ║ oder deaktivieren?                                                            ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ 1 ] Aktivieren (empfohlen)         ║ [ 2 ] Deaktivieren                     ║"
+            Write-Host "   ║                                      ║                                        ║"
+            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ X ] Zurück zur Benutzerauswahl                                              ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host ""
+            $input = Read-Host "Bitte wählen Sie"
+
+            switch ($input) {
+                '1' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "1"
+                    cls
+                    startbildschirm
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Administratoren                  ║"
+                    Write-Host "   ╠════════════════════════════════════════════════════════════════               ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ║ Die Sicherheitskonfiguration für Administratoren wurde aktiviert!             ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Start-Sleep -Milliseconds 3000
+                    iexplorer_sicherheit}
+                '2' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "0"
+                    cls
+                    startbildschirm
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Administratoren                  ║"
+                    Write-Host "   ╠════════════════════════════════════════════════════════════════               ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ║ Die Sicherheitskonfiguration für Administratoren wurde deaktiviert!           ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Start-Sleep -Milliseconds 3000
+                    iexplorer_sicherheit}
+                'x' {iexplorer_sicherheit} # Zurück zur Benutzerauswahl #
+            } pause }
+        until ($input -eq 'x')
+}
+
+### Verstärkte Sicherheitskonfiguration für IE - Benutzer###
+function iexplorer_usersicherheit {
+    do {
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Benutzer                         ║"
+            Write-Host "   ╠═════════════════════════════════════════════════════════                      ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Möchten Sie die verstärkte Sicherheitskonfiguration aktivieren                ║"
+            Write-Host "   ║ oder deaktivieren?                                                            ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ 1 ] Aktivieren (empfohlen)         ║ [ 2 ] Deaktivieren                     ║"
+            Write-Host "   ║                                      ║                                        ║"
+            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ X ] Zurück zur Benutzerauswahl                                              ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host ""
+            $input = Read-Host "Bitte wählen Sie"
+
+            switch ($input) {
+                '1' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "1"
+                    cls
+                    startbildschirm
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Benutzer                         ║"
+                    Write-Host "   ╠═════════════════════════════════════════════════════════                      ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ║ Die Sicherheitskonfiguration für Benutzer wurde aktiviert!                    ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Start-Sleep -Milliseconds 3000
+                    iexplorer_sicherheit}
+                '2' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "0"
+                    cls
+                    startbildschirm
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Benutzer                         ║"
+                    Write-Host "   ╠═════════════════════════════════════════════════════════                      ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ║ Die Sicherheitskonfiguration für Benutzer wurde deaktiviert!                  ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Start-Sleep -Milliseconds 3000
+                    iexplorer_sicherheit}
+                'x' {iexplorer_sicherheit} # Zurück zur Benutzerauswahl #
+            } pause }
+        until ($input -eq 'x')
+}
+
+### Remotedesktop einrichten ###
+function remotedesktoptool {
+    do {
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Remotedesktop einrichten                                                      ║"
+            Write-Host "   ╠════════════════════════════                                                   ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Möchten Sie die RDP-Verbindung zu diesem Server aktivieren oder deaktivieren? ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ 1 ] Aktivieren                     ║ [ 2 ] Deaktivieren                     ║"
+            Write-Host "   ║                                      ║                                        ║"
+            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host ""
+            $input = Read-Host "Bitte wählen Sie"
+
+            switch ($input) {
+                '1' {Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value "0"
+                    cls
+                    startbildschirm
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Remotedesktop einrichten                                                      ║"
+                    Write-Host "   ╠════════════════════════════                                                   ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ║ RDP-Verbindungen zu diesem Server wurden aktiviert!                           ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Start-Sleep -Milliseconds 3000
+                    menueauswahl}
+                '2' {Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value "1"
+                    cls
+                    startbildschirm
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Remotedesktop einrichten                                                      ║"
+                    Write-Host "   ╠════════════════════════════                                                   ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ║ RDP-Verbindungen zu diesem Server wurden deaktiviert!                         ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Start-Sleep -Milliseconds 3000
+                    menueauswahl}
+                'x' {menueauswahl} # Zurück ins Hauptmenü #
+            } pause }
+        until ($input -eq 'x')
+}
+
+### Serverrollen und -features ###
+function servermanager {
+    cls
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Serverrollen und -features                                                    ║"
+        Write-Host "   ╠════════════════════════════════                                               ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ Diese Funktion ist derzeit noch in der Entwicklung!                           ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+    Start-Sleep -Milliseconds 3000
+    menueauswahl
+}
+
+### Windows neustarten - Menü ###
+function neustarten {
+    do {
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Windows neustarten                                                            ║"
+            Write-Host "   ╠══════════════════════                                                         ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Möchten Sie Windows wirklich neustarten?                                      ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ J ] Ja                             ║ [ N ] Nein                             ║"
+            Write-Host "   ║                                      ║                                        ║"
+            Write-Host "   ╚══════════════════════════════════════╩════════════════════════════════════════╝"
+            Write-Host ""
+            $input = Read-Host "Bitte wählen Sie"
+
+            switch ($input) {
+                'J' {neustart}
+                'N' {menueauswahl} # Zurück ins Hauptmenü #
+            } pause }
+        until ($input -eq 'N')
+}
+
+### Windows neustarten - Menü ###
+function neustart {
+    cls
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows neustarten                                                            ║"
+        Write-Host "   ╠══════════════════════                                                         ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ Windows wird neugestartet!                                                    ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host ""
+        Start-Sleep -Milliseconds 5000
+        Restart-Computer -Force
 }
 
 ### Start ###
