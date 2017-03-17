@@ -12,7 +12,7 @@
     function menue {
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Hauptmenü                                                                     ║"
-        Write-Host "   ║═════════════                                                                  ║"
+        Write-Host "   ╠═════════════                                                                  ║"
         Write-Host "   ║                                                                               ║"
         Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 5 ] Remotedesktop einrichten         ║"
         Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 6 ] Serverrollen und -features       ║"
