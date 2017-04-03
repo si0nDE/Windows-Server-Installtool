@@ -14,10 +14,10 @@
         Write-Host "   ║ Hauptmenü                                                                     ║"
         Write-Host "   ╠═════════════                                                                  ║"
         Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 5 ] Remotedesktop einrichten         ║"
-        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 6 ] Serverrollen und -features       ║"
+        Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 5 ] Dienst verwalten: MapsBroker     ║"
+        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 6 ] Remotedesktop einrichten         ║"
         Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten ║                                        ║"
-        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration    ║                                        ║"
+        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration    ║ [ 9 ] Serverrollen und -features       ║"
         Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
         Write-Host "   ║ [ 0 ] Windows neustarten                                                      ║"
         Write-Host "   ║ [ X ] Programm beenden                                                        ║"
@@ -41,8 +41,9 @@ function menueauswahl {
                 '2' {netzwerktool}
                 '3' {workgroupdomaintool}
                 '4' {iexplorer_sicherheit}
-                '5' {remotedesktoptool}
-                '6' {wsmtool}
+                '5' {mapsbrokertool}
+                '6' {remotedesktoptool}
+                '9' {wsmtool}
                 'x' {[Environment]::Exit(1)}
             } pause }
         until ($input -eq 'x')
@@ -491,7 +492,57 @@ function iexplorer_usersicherheit {
                     Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
                     Start-Sleep -Milliseconds 3000
                     iexplorer_sicherheit}
-                'x' {iexplorer_sicherheit} # Zurück zur Benutzerauswahl #
+                'x' {menueauswahl} # Zurück zur Benutzerauswahl #
+            } pause }
+        until ($input -eq 'x')
+}
+
+### Dienst verwalten: MapsBroker ###
+function mapsbrokertool {
+    do {
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                              ║"
+            Write-Host "   ╠════════════════════════════════════════════════════                           ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Möchten Sie den MapsBroker-Dienst automatisch oder manuell aktivieren lassen? ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ 1 ] Automatisch (Standard)         ║ [ 2 ] Manuell                          ║"
+            Write-Host "   ║                                      ║                                        ║"
+            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host ""
+            $input = Read-Host "Bitte wählen Sie"
+
+            switch ($input) {
+                '1' {Set-Service MapsBroker -StartupType Automatic
+                    cls
+                    startbildschirm
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                              ║"
+                    Write-Host "   ╠════════════════════════════════════════════════════                           ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ║ Der MapsBroker-Dienst wird nun automatisch gestartet.                         ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Start-Sleep -Milliseconds 3000
+                    mapsbrokertool}
+                '2' {Set-Service MapsBroker -StartupType Manual
+                    cls
+                    startbildschirm
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                              ║"
+                    Write-Host "   ╠════════════════════════════════════════════════════                           ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ║ Der MapsBroker-Dienst wird ab sofort nicht mehr automatisch gestartet.        ║"
+                    Write-Host "   ║                                                                               ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Start-Sleep -Milliseconds 3000
+                    mapsbrokertool}
+                'x' {menueauswahl} # Zurück zur Benutzerauswahl #
             } pause }
         until ($input -eq 'x')
 }
@@ -631,6 +682,4 @@ function neustart {
 }
 
 ### Start ###
-startbildschirm
-menue
 menueauswahl
