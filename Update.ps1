@@ -1,4 +1,8 @@
-﻿cls
+﻿    ###    Simon Fieber IT-Services    ###
+    ###     Coded by: Simon Fieber     ###
+    ###     Visit:  simonfieber.it     ###
+
+cls
 ### Fehlermeldungen unterdrücken ###
 ### Mögliche Fehlermeldungen: Dateien oder Ordner können nicht gelöscht werden, da diese nicht existieren. ###
 $ErrorActionPreference = "SilentlyContinue"
@@ -8,6 +12,7 @@ function startbildschirm {
     Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
     Write-Host "║ Windows Server Install Update-Tool                                            ║"
     Write-Host "║                                                                               ║"
+    Write-Host "║                                                     (c) github.simonfieber.it ║"
     Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
 }
 
@@ -30,7 +35,7 @@ function Unzip
 
 ### Updateroutine ###
 function Get-Update {
-    $source = "https://github.com/si0nDE/Windows-Server-Installtool/archive/master.zip"
+    $source = "https://github.com/simonfieberIT/Windows-Server-Installtool/archive/master.zip"
 
     Start-Sleep -Milliseconds 1000
     Write-Host "        ╔═══════════════════════════════════════════════════════════════════════════════╗"
@@ -65,6 +70,10 @@ function Get-Update {
     Remove-Item "$installpath\Windows-Server-Installtool-master\scripts\"
     Move-Item "$installpath\Windows-Server-Installtool-master\*" "$installpath" -Force
     Remove-Item "$installpath\Windows-Server-Installtool-master\"
+    Remove-Item "$installpath\.gitattributes"
+    Remove-Item "$installpath\.gitignore"
+    Remove-Item "$installpath\_config.yml"
+    Remove-Item "$installpath\README.md"
     Start-Sleep -Milliseconds 1000
     cls
     startbildschirm

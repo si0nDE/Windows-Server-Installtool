@@ -1,4 +1,8 @@
-﻿cls
+﻿    ###    Simon Fieber IT-Services    ###
+    ###     Coded by: Simon Fieber     ###
+    ###     Visit:  simonfieber.it     ###
+
+cls
 
 ### Startbildschirm ###
     function startbildschirm {

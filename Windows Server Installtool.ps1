@@ -1,10 +1,15 @@
-﻿cls
+﻿    ###    Simon Fieber IT-Services    ###
+    ###     Coded by: Simon Fieber     ###
+    ###     Visit:  simonfieber.it     ###
+
+cls
 
 ### Startbildschirm ###
 function startbildschirm {
     Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool v1.4.1                                             ║"
+    Write-Host "║ Windows Server Installtool v1.4.2                                             ║"
     Write-Host "║                                                                               ║"
+    Write-Host "║                                                     (c) github.simonfieber.it ║"
     Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
 }
 
