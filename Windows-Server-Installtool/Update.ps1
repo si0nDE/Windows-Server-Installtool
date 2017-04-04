@@ -83,9 +83,7 @@ function update_aufraeumen {
         Write-Host "        ║ Aufräumen...                                                                  ║"
         Write-Host "        ║                                                                               ║"
         Write-Host "        ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Remove-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtoolscripts\"
-        Start-Sleep -Milliseconds 1000
-        Remove-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\"
+        Remove-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\" -Recurse
         Remove-Item "$installpath\Windows-Server-Installtool-master\.gitattributes"
         Remove-Item "$installpath\Windows-Server-Installtool-master\.gitignore"
         Remove-Item "$installpath\Windows-Server-Installtool-master\_config.yml"
@@ -118,3 +116,5 @@ function Get-Update {
     Start-Sleep -Milliseconds 1500
     update_fertigstellen
 }
+
+Get-Update
