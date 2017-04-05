@@ -21,11 +21,12 @@ cls
         Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 5 ] Dienst verwalten: MapsBroker     ║"
         Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 6 ] Remotedesktop einrichten         ║"
         Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten ║                                        ║"
-        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration    ║ [ 9 ] Serverrollen und -features       ║"
+        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration    ║                                        ║"
         Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-        Write-Host "   ║ [ 0 ] Windows neustarten                                                      ║"
-        Write-Host "   ║ [ X ] Programm beenden                                                        ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ [ 0 ] Windows neustarten             ║ [ S ] Serverrollen und -features       ║"
+        Write-Host "   ║ [ X ] Programm beenden               ║ [ P ] Windows Product Key Tool         ║"
+        Write-Host "   ╚══════════════════════════════════════╩════════════════════════════════════════╝"
     }
 
 
@@ -47,7 +48,8 @@ function menueauswahl {
                 '4' {iexplorer_sicherheit}
                 '5' {mapsbrokertool}
                 '6' {remotedesktoptool}
-                '9' {wsmtool}
+                'p' {wpktool}
+                's' {wsmtool}
                 'x' {[Environment]::Exit(1)}
             } pause }
         until ($input -eq 'x')
@@ -608,10 +610,46 @@ function Get-ScriptDirectory {
 }
  
 $installpath = Get-ScriptDirectory
-$scriptpath = "\servermanager.ps1"
-$fullscriptpath = $installpath + $scriptpath
+$wsm_scriptpath = "\servermanager.ps1"
+$wpk_scriptpath = "\productkey.ps1"
+$wsm_fullscriptpath = $installpath + $wsm_scriptpath
+$wpk_fullscriptpath = $installpath + $wpk_scriptpath
 
-### Zurück zum Windows Server Installtool ###
+### Windows Server Installtool starten ###
+function wpktool {
+    cls
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows Product Key Tool                                                      ║"
+        Write-Host "   ╠════════════════════════════                                                   ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ Das Programm wird gewechselt...                                               ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Start-Sleep -Milliseconds 1500
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        if(!$princ.IsInRole( `
+            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+            {
+                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                $script = $wpk_fullscriptpath
+                $prm = $script
+                    foreach($a in $args) {
+                        $prm += ' ' + $a
+                    }
+                $psi.Arguments = $prm
+                $psi.Verb = "runas"
+                [System.Diagnostics.Process]::Start($psi) | Out-Null
+                return;
+            }
+    ### Falls Adminrechte nicht erfordert werden können, ###
+    ### soll das Script trotzdem ausgeführt werden.      ###
+    & $wpk_fullscriptpath
+}
+
+### Windows Server Installtool starten ###
 function wsmtool {
     cls
     startbildschirm
@@ -630,7 +668,7 @@ function wsmtool {
             {
                 $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
                 $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
-                $script = $fullscriptpath
+                $script = $wsm_fullscriptpath
                 $prm = $script
                     foreach($a in $args) {
                         $prm += ' ' + $a
@@ -642,7 +680,7 @@ function wsmtool {
             }
     ### Falls Adminrechte nicht erfordert werden können, ###
     ### soll das Script trotzdem ausgeführt werden.      ###
-    & $fullscriptpath
+    & $wsm_fullscriptpath
 }
 
 ### Windows neustarten - Menü ###
