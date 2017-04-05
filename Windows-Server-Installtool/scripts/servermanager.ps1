@@ -7,7 +7,7 @@ cls
 ### Startbildschirm ###
     function startbildschirm {
         Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server-Manager Tool v2.0.1α                                           ║"
+        Write-Host "║ Windows Server-Manager Tool v2.0.2α                                           ║"
         Write-Host "║                                                                               ║"
         Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
     }
@@ -18,13 +18,13 @@ cls
         Write-Host "   ║ Welche Rollen möchten Sie verwalten?                                          ║"
         Write-Host "   ╠════════════════════════════════════════                                       ║"
         Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ [   ] Active Directory               ║ [   ] .NET Framework 3.5               ║"
-        Write-Host "   ║ [   ] DHCP-Server                    ║ [   ] .NET Framework 4.6               ║"
-        Write-Host "   ║ [   ] DNS-Server                     ║ [   ] Windows Server Sicherung         ║"
-        Write-Host "   ║ [   ] Hyper-V                        ║                                        ║"
-        Write-Host "   ║ [   ] Remotedesktopdienste           ║                                        ║"
-        Write-Host "   ║ [   ] Webserver (IIS)                ║                                        ║"
-        Write-Host "   ║ [   ] Windows Server Update Services ║                                        ║"
+        Write-Host "   ║ [ 1 ] Active Directory               ║ [  8 ] .NET Framework 3.5              ║"
+        Write-Host "   ║ [ 2 ] DHCP-Server                    ║ [  9 ] .NET Framework 4.6              ║"
+        Write-Host "   ║ [ 3 ] DNS-Server                     ║ [ 10 ] Windows Server Sicherung        ║"
+        Write-Host "   ║ [ 4 ] Hyper-V                        ║                                        ║"
+        Write-Host "   ║ [ 5 ] Remotedesktopdienste           ║                                        ║"
+        Write-Host "   ║ [ 6 ] Webserver (IIS)                ║                                        ║"
+        Write-Host "   ║ [ 7 ] Windows Server Update Services ║                                        ║"
         Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
         Write-Host "   ║ [ 0 ] Windows neustarten                                                      ║"
         Write-Host "   ║ [ X ] Zurück zum WSI-Tool                                                     ║"
@@ -44,6 +44,16 @@ function menueauswahl {
 
             switch ($input) {
                 '0' {neustarten}
+                '1' {entwicklung}
+                '2' {entwicklung}
+                '3' {entwicklung}
+                '4' {entwicklung}
+                '5' {entwicklung}
+                '6' {entwicklung}
+                '7' {entwicklung}
+                '8' {entwicklung}
+                '9' {entwicklung}
+                '10' {entwicklung}
                 'x' {wsitool}
             } pause }
         until ($input -eq 'x')
@@ -57,7 +67,23 @@ function Get-ScriptDirectory {
  
 $installpath = Get-ScriptDirectory
 $scriptpath = "\start.ps1"
+$restart_scriptpath = "\neustart.ps1"
 $fullscriptpath = $installpath + $scriptpath
+$restart_fullscriptpath = $installpath + $restart_scriptpath
+
+function entwicklung {
+cls
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hinweis                                                                       ║"
+        Write-Host "   ╠═══════════                                                                    ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ Diese Funktion ist derzeit noch in der Entwicklung!                           ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Start-Sleep -Milliseconds 3000
+        menueauswahl
+}
 
 ### Zurück zum Windows Server Installtool ###
 function wsitool {
