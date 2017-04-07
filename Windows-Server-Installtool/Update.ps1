@@ -23,7 +23,7 @@ function Get-ScriptDirectory {
 }
  
 #$installpath = Get-ScriptDirectory
-$installpath = "C:\Users\s.fieber\Desktop\Test\Windows-Server-Installtool"
+$installpath = Get-ScriptDirectory
 
 ### Funktion zum Entpacken einer ZIP-Datei ###
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -67,9 +67,7 @@ function update_installieren {
         Write-Host "        ║                                                                               ║"
         Write-Host "        ╚═══════════════════════════════════════════════════════════════════════════════╝"
         Remove-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\update.ps1"
-        Remove-Item "$installpath\scripts\*"
-        Start-Sleep -Milliseconds 1000
-        Remove-Item "$installpath\scripts\" -Force
+        Remove-Item "$installpath\scripts\" -Recurse
         Start-Sleep -Milliseconds 3000
         New-Item "$installpath\scripts\" -ItemType directory | Out-Null
         Move-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\scripts\*" "$installpath\scripts\" -Force
