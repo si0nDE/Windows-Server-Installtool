@@ -334,7 +334,9 @@ function Get-ScriptDirectory {
  
 $installpath = Get-ScriptDirectory
 $scriptpath = "\start.ps1"
+$restart_scriptpath = "\neustart.ps1"
 $fullscriptpath = $installpath + $scriptpath
+$restart_fullscriptpath = $installpath + $restart_scriptpath
 
 ### Zurück zum Windows Server Installtool ###
 function wsitool {
@@ -370,20 +372,29 @@ function wsitool {
     & $fullscriptpath
 }
 
-### Windows neustarten - Menü ###
-function neustart {
+### Windows neustarten ###
+function neustarten {
     cls
-    startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows neustarten                                                            ║"
-        Write-Host "   ╠══════════════════════                                                         ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Windows wird neugestartet!                                                    ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Write-Host ""
-        Start-Sleep -Milliseconds 5000
-        Restart-Computer -Force
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        if(!$princ.IsInRole( `
+            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+            {
+                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                $script = $restart_fullscriptpath
+                $prm = $script
+                    foreach($a in $args) {
+                        $prm += ' ' + $a
+                    }
+                $psi.Arguments = $prm
+                $psi.Verb = "runas"
+                [System.Diagnostics.Process]::Start($psi) | Out-Null
+                return;
+            }
+    ### Falls Adminrechte nicht erfordert werden können, ###
+    ### soll das Script trotzdem ausgeführt werden.      ###
+    & $restart_fullscriptpath
 }
 
 ### Start ###
