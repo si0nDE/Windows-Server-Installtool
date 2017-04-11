@@ -7,7 +7,7 @@ cls
 ### Startbildschirm ###
 function startbildschirm {
     Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool v1.5.2                                             ║"
+    Write-Host "║ Windows Server Installtool v1.6                                               ║"
     Write-Host "║                                                                               ║"
     Write-Host "║                                                     (c) github.simonfieber.it ║"
     Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
@@ -20,7 +20,7 @@ function Get-ScriptDirectory {
 }
  
 $installpath = Get-ScriptDirectory
-$scriptpath = "\scripts\start.ps1"
+$scriptpath = "\scripts\tool_server.ps1"
 $fullscriptpath = $installpath + $scriptpath
 
 ### Administrationsrechte prüfen und ggf. anfordern ###

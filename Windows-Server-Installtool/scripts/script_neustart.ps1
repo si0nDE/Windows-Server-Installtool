@@ -5,12 +5,12 @@
 cls
 
 ### Startbildschirm ###
-    function startbildschirm {
+function startbildschirm {
         Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
         Write-Host "║ Windows Server Installtool                                                    ║"
         Write-Host "║                                                                               ║"
         Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
-    }
+}
 
 ### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
 function Get-ScriptDirectory {
@@ -19,7 +19,7 @@ function Get-ScriptDirectory {
 }
  
 $installpath = Get-ScriptDirectory
-$scriptpath = "\start.ps1"
+$scriptpath = "\tool_server.ps1"
 $fullscriptpath = $installpath + $scriptpath
 
 ### Windows neustarten - Menü ###

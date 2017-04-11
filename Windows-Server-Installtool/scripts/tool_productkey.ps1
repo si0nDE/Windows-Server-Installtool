@@ -5,15 +5,15 @@
 cls
 
 ### Startbildschirm ###
-    function startbildschirm {
+function startbildschirm {
         Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
         Write-Host "║ Windows Product Key Tool                                                      ║"
         Write-Host "║                                                                               ║"
         Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
-    }
+}
 
 ### Menü ###
-    function menue {
+function menue {
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Hauptmenü                                                                     ║"
         Write-Host "   ╠═════════════                                                                  ║"
@@ -21,13 +21,13 @@ cls
         Write-Host "   ║ [ 1 ] Product Key eingeben                                                    ║"
         Write-Host "   ║ [ 2 ] Product Key aktivieren                                                  ║"
         Write-Host "   ║ [ 3 ] Aktuell installierte Edition abfragen                                   ║"
-        Write-Host "   ║ [ 4 ] Windows Server-Editionen aktualisieren                                  ║"
+        Write-Host "   ║ [ 4 ] Windows-Edition aktualisieren                                           ║"
         Write-Host "   ║ [ 5 ] Lizenzinformationen abrufen                                             ║"
         Write-Host "   ╠═══════════════════════════════════════════════════════════════════════════════╣"
         Write-Host "   ║ [ 0 ] Windows neustarten                                                      ║"
         Write-Host "   ║ [ X ] Zurück zum WSI-Tool                                                     ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-    }
+}
 
 ### Menüauswahl ###
 function menueauswahl {
@@ -42,7 +42,7 @@ function menueauswahl {
                 '1' {productkey_eingeben}
                 '2' {productkey_aktivieren}
                 '3' {installierte_edition}
-                '4' {edition_aktualisieren}
+                '4' {upd-srvedit}
                 '5' {lizenzinfo_abrufen}
                 '0' {neustarten}
                 'x' {wsitool}
@@ -243,87 +243,28 @@ function installierte_edition {
 }
 
 ### Windows Server-Editionen aktualisieren ###
-function edition_aktualisieren {
+function upd-srvedit {
     cls
-    startbildschirm
-    $UpdateEdition = ''
-    $WunschEdition = ''
-    $ProductKey = ''
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows Server-Editionen aktualisieren                                        ║"
-        Write-Host "   ╠══════════════════════════════════════════                                     ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Mögliche Editionen zum aktualisieren werden abgefragt...                      ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        $UpdateEdition = DISM /online /Get-TargetEditions
-            cls
-            startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Windows Server-Editionen aktualisieren                                        ║"
-            Write-Host "   ╠══════════════════════════════════════════                                     ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Wir haben folgende Rückmeldung erhalten:                                      ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-            $UpdateEdition
-            Write-Host ""
-            Start-Sleep -Milliseconds 1500
-            Write-Host "      ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "      ║ Windows Server-Editionen aktualisieren                                        ║"
-            Write-Host "      ╠══════════════════════════════════════════                                     ║"
-            Write-Host "      ║                                                                               ║"
-            Write-Host "      ║ Welche Edition möchten Sie aktualisieren?                                     ║"
-            Write-Host "      ║                                                                               ║"
-            Write-Host "      ║ Geben Sie die gewünschte Edition genau so ein, wie sie oben angegeben wird.   ║"
-            Write-Host "      ║                                                                               ║"
-            Write-Host "      ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-            $WunschEdition = Read-Host "      Gewünschte Edition"
-            Start-Sleep -Milliseconds 1500
-                cls
-                startbildschirm
-                Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                Write-Host "   ║ Windows Server-Editionen aktualisieren                                        ║"
-                Write-Host "   ╠══════════════════════════════════════════                                     ║"
-                Write-Host "   ║                                                                               ║"
-                Write-Host "   ║ Bitte geben Sie den gewünschten Product Key im folgenden Format ein:          ║"
-                Write-Host "   ║                                                                               ║"
-                Write-Host "   ║     XXXXX-XXXXX-XXXXX-XXXXX-XXXXX                                             ║"
-                Write-Host "   ║                                                                               ║"
-                Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-                Write-Host ""
-                $ProductKey = Read-Host "Geben Sie den Product Key für $WunschEdition ein"
-                Start-Sleep -Milliseconds 1500
-                    cls
-                    startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Windows Server-Editionen aktualisieren                                        ║"
-                    Write-Host "   ╠══════════════════════════════════════════                                     ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Windows Edition wird aktualisiert...                                          ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-                    Write-Host ""
-                    Write-Host "Windows-Edition: $WunschEdition"
-                    Start-Sleep -Milliseconds 1500
-                    Write-Host "Product Key:     $ProductKey"
-                    Start-Sleep -Milliseconds 3000
-                        cls
-                        startbildschirm
-                        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                        Write-Host "   ║ Windows Server-Editionen aktualisieren                                        ║"
-                        Write-Host "   ╠══════════════════════════════════════════                                     ║"
-                        Write-Host "   ║                                                                               ║"
-                        Write-Host "   ║ Windows Edition wird aktualisiert...                                          ║"
-                        Write-Host "   ║                                                                               ║"
-                        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-                        Write-Host ""
-                        Start-Sleep -Milliseconds 1500
-                        DISM /online /Set-Edition:$WunschEdition /ProductKey:$ProductKey /AcceptEULA
-                        Write-Host ""
-                        Write-Host ""
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        if(!$princ.IsInRole( `
+            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+            {
+                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                $script = $upd_srveditFULLPATH
+                $prm = $script
+                    foreach($a in $args) {
+                        $prm += ' ' + $a
+                    }
+                $psi.Arguments = $prm
+                $psi.Verb = "runas"
+                [System.Diagnostics.Process]::Start($psi) | Out-Null
+                return;
+            }
+    ### Falls Adminrechte nicht erfordert werden können, ###
+    ### soll das Script trotzdem ausgeführt werden.      ###
+    & $upd_srveditFULLPATH
 }
 
 ### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
@@ -331,12 +272,18 @@ function Get-ScriptDirectory {
     $Invocation = (Get-Variable MyInvocation -Scope 1).Value
     Split-Path $Invocation.MyCommand.Path
 }
- 
+
 $installpath = Get-ScriptDirectory
-$scriptpath = "\start.ps1"
-$restart_scriptpath = "\neustart.ps1"
+
+### Pfade zu den Scripts ###
+$scriptpath = "\tool_server.ps1"
+$restart_scriptpath = "\script_neustart.ps1"
+$upd_srveditPATH = "\script_upd-srvedit.ps1"
+
+### Volle Scriptpfade generieren ###
 $fullscriptpath = $installpath + $scriptpath
 $restart_fullscriptpath = $installpath + $restart_scriptpath
+$upd_srveditFULLPATH = $installpath + $upd_srveditPATH
 
 ### Zurück zum Windows Server Installtool ###
 function wsitool {

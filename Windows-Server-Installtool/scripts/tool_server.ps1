@@ -5,15 +5,15 @@
 cls
 
 ### Startbildschirm ###
-    function startbildschirm {
+function startbildschirm {
         Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
         Write-Host "║ Windows Server Installtool                                                    ║"
         Write-Host "║                                                                               ║"
         Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
-    }
+}
 
 ### Menü ###
-    function menue {
+function menue {
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Hauptmenü                                                                     ║"
         Write-Host "   ╠═════════════                                                                  ║"
@@ -27,8 +27,7 @@ cls
         Write-Host "   ║ [ 0 ] Windows neustarten             ║ [ S ] Serverrollen und -features       ║"
         Write-Host "   ║ [ X ] Programm beenden               ║ [ P ] Windows Product Key Tool         ║"
         Write-Host "   ╚══════════════════════════════════════╩════════════════════════════════════════╝"
-    }
-
+}
 
 
 ### Menüauswahl ###
@@ -265,7 +264,6 @@ function netzwerktool_ipv4 {
                 'N' {netzwerktool}
             } pause }
         until ($input -eq 'N')
-
 }
 
 ### Netzwerkkonfiguration (IPv6) ändern ###
@@ -610,9 +608,9 @@ function Get-ScriptDirectory {
 }
  
 $installpath = Get-ScriptDirectory
-$wsm_scriptpath = "\servermanager.ps1"
-$wpk_scriptpath = "\productkey.ps1"
-$restart_scriptpath = "\neustart.ps1"
+$wsm_scriptpath = "\tool_srvmanager.ps1"
+$wpk_scriptpath = "\tool_productkey.ps1"
+$restart_scriptpath = "\script_neustart.ps1"
 $wsm_fullscriptpath = $installpath + $wsm_scriptpath
 $wpk_fullscriptpath = $installpath + $wpk_scriptpath
 $restart_fullscriptpath = $installpath + $restart_scriptpath

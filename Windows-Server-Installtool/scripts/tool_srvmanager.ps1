@@ -148,8 +148,8 @@ function Get-ScriptDirectory {
 }
  
 $installpath = Get-ScriptDirectory
-$scriptpath = "\start.ps1"
-$restart_scriptpath = "\neustart.ps1"
+$scriptpath = "\tool_server.ps1"
+$restart_scriptpath = "\script_neustart.ps1"
 $fullscriptpath = $installpath + $scriptpath
 $restart_fullscriptpath = $installpath + $restart_scriptpath
 
