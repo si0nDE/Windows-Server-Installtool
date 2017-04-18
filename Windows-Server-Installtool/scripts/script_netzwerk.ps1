@@ -44,7 +44,7 @@ function netzwerktool {
             $input = Read-Host "Bitte wählen Sie"
 
             switch ($input) {
-                '0' {netzwerktool_anzeigen}
+                '0' {Show-NetConf}
                 '4' {netzwerktool_ipv4}
                 '6' {netzwerktool_ipv6}
                 'x' {wsitool} # Zurück ins Hauptmenü #
@@ -53,7 +53,7 @@ function netzwerktool {
 }
 
 ### Netzwerkkonfiguration anzeigen ###
-function netzwerktool_anzeigen {
+function Show-NetConf {
     cls
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
@@ -64,7 +64,7 @@ function netzwerktool_anzeigen {
         Write-Host "   ║                                                                               ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
-        netsh interface ip show config
+        Get-NetIPConfiguration
         Write-Host ""
         Write-Host ""
 }

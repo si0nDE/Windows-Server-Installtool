@@ -103,7 +103,19 @@ function update_fertigstellen {
     [Environment]::Exit(1)
 }
 
-function Get-Update {
+if($installpath -like "*\GitHub\Windows-Server-Installtool\*") {
+    cls
+    startbildschirm
+        Start-Sleep -Milliseconds 500
+        Write-Host "        ╔═══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "        ║ Update scheint in der Entwicklungsumgebung ausgeführt zu werden.              ║"
+        Write-Host "        ║                                                                               ║"
+        Write-Host "        ║     Programm wird beendet...                                                  ║"
+        Write-Host "        ║                                                                               ║"
+        Write-Host "        ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Start-Sleep -Milliseconds 5000
+} else {
+    Start-Sleep -Milliseconds  500
     update_herunterladen
     Start-Sleep -Milliseconds 1500
     update_entpacken
@@ -115,4 +127,3 @@ function Get-Update {
     update_fertigstellen
 }
 
-Get-Update
