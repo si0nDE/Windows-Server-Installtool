@@ -7,7 +7,7 @@ cls
 ### Startbildschirm ###
     function startbildschirm {
         Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server-Manager Tool v2.0.4α                                           ║"
+        Write-Host "║ Windows Server-Manager Tool v2.0.5α                                           ║"
         Write-Host "║                                                                               ║"
         Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
     }
@@ -135,6 +135,88 @@ function netframework35-uninstall {
             Write-Host "   ╠══════════════════════                                                         ║"
             Write-Host "   ║                                                                               ║"
             Write-Host "   ║ .NET Framework 3.5 wurde erfolgreich deinstalliert...                         ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Start-Sleep -Milliseconds 3000
+    menueauswahl
+}
+
+### .NET Framework 4.6 ###
+function netframework46-menu {
+    do {
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ .NET Framework 4.6                                                            ║"
+            Write-Host "   ╠══════════════════════                                                         ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ Möchten Sie .NET Framework installieren oder deinstallieren?                  ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ [ 1 ] Installieren                   ║ [ 2 ] Deinstallieren                   ║"
+            Write-Host "   ║                                      ║                                        ║"
+            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host ""
+            $input = Read-Host "Bitte wählen Sie"
+
+            switch ($input) {
+                '1' {netframework46-install}
+                '2' {netframework46-uninstall}
+                'x' {menueauswahl} # Zurück ins Hauptmenü #
+            } pause }
+        until ($input -eq 'x')
+}
+
+### .NET Framework 4.6 installieren ###
+function netframework46-install {
+    cls
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ .NET Framework 4.6                                                            ║"
+        Write-Host "   ╠══════════════════════                                                         ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ .NET Framework 4.6 wird installiert...                                        ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host ""
+        Start-Sleep -Milliseconds 1500
+        Install-WindowsFeature NET-Framework-45-Core -source \\network\share\sxs | Out-Null
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ .NET Framework 4.6                                                            ║"
+            Write-Host "   ╠══════════════════════                                                         ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ .NET Framework 4.6 wurde erfolgreich installiert...                           ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Start-Sleep -Milliseconds 3000
+    menueauswahl
+}
+
+### .NET Framework 4.6 deinstallieren ###
+function netframework46-uninstall {
+    cls
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ .NET Framework 4.6                                                            ║"
+        Write-Host "   ╠══════════════════════                                                         ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ║ .NET Framework 4.6 wird deinstalliert...                                      ║"
+        Write-Host "   ║                                                                               ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host ""
+        Start-Sleep -Milliseconds 1500
+        Uninstall-WindowsFeature NET-Framework-45-Core | Out-Null
+        cls
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ .NET Framework 4.6                                                            ║"
+            Write-Host "   ╠══════════════════════                                                         ║"
+            Write-Host "   ║                                                                               ║"
+            Write-Host "   ║ .NET Framework 4.6 wurde erfolgreich deinstalliert...                         ║"
             Write-Host "   ║                                                                               ║"
             Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
