@@ -19,7 +19,7 @@ cls
         Write-Host "   ╠════════════════════════════════════════                                       ║"
         Write-Host "   ║                                                                               ║"
         Write-Host "   ║ [ 1 ] Active Directory               ║ [  8 ] .NET Framework 3.5              ║"
-        Write-Host "   ║ [ 2 ] DHCP-Server                    ║ [  9 ] .NET Framework 4.6              ║"
+        Write-Host "   ║ [ 2 ] DHCP-Server                    ║ [  9 ] .NET Framework 4.5              ║"
         Write-Host "   ║ [ 3 ] DNS-Server                     ║ [ 10 ] Windows Server Sicherung        ║"
         Write-Host "   ║ [ 4 ] Hyper-V                        ║                                        ║"
         Write-Host "   ║ [ 5 ] Remotedesktopdienste           ║                                        ║"
@@ -51,8 +51,8 @@ function menueauswahl {
                 '5' {entwicklung}
                 '6' {entwicklung}
                 '7' {entwicklung}
-                '8' {netframework35-menu}
-                '9' {entwicklung}
+                '8' {netframework35}
+                '9' {netframework45}
                 '10' {entwicklung}
                 'x' {wsitool}
             } pause }
@@ -60,167 +60,53 @@ function menueauswahl {
 }
 
 ### .NET Framework 3.5 ###
-function netframework35-menu {
-    do {
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework 3.5                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie .NET Framework installieren oder deinstallieren?                  ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Installieren                   ║ [ 2 ] Deinstallieren                   ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-            $input = Read-Host "Bitte wählen Sie"
-
-            switch ($input) {
-                '1' {netframework35-install}
-                '2' {netframework35-uninstall}
-                'x' {menueauswahl} # Zurück ins Hauptmenü #
-            } pause }
-        until ($input -eq 'x')
-}
-
-### .NET Framework 3.5 installieren ###
-function netframework35-install {
+function netframework35 {
     cls
-    startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ .NET Framework 3.5                                                            ║"
-        Write-Host "   ╠══════════════════════                                                         ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ .NET Framework 3.5 wird installiert...                                        ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Write-Host ""
-        Start-Sleep -Milliseconds 1500
-        Install-WindowsFeature Net-Framework-Core -source \\network\share\sxs | Out-Null
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework 3.5                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ .NET Framework 3.5 wurde erfolgreich installiert...                           ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Start-Sleep -Milliseconds 3000
-    menueauswahl
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        if(!$princ.IsInRole( `
+            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+            {
+                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                $script = $netframework35_fullscriptpath
+                $prm = $script
+                    foreach($a in $args) {
+                        $prm += ' ' + $a
+                    }
+                $psi.Arguments = $prm
+                $psi.Verb = "runas"
+                [System.Diagnostics.Process]::Start($psi) | Out-Null
+                return;
+            }
+    ### Falls Adminrechte nicht erfordert werden können, ###
+    ### soll das Script trotzdem ausgeführt werden.      ###
+    & $netframework35_fullscriptpath
 }
 
-### .NET Framework 3.5 deinstallieren ###
-function netframework35-uninstall {
+### .NET Framework 4.5 ###
+function netframework45 {
     cls
-    startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ .NET Framework 3.5                                                            ║"
-        Write-Host "   ╠══════════════════════                                                         ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ .NET Framework 3.5 wird deinstalliert...                                      ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Write-Host ""
-        Start-Sleep -Milliseconds 1500
-        Uninstall-WindowsFeature Net-Framework-Core | Out-Null
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework 3.5                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ .NET Framework 3.5 wurde erfolgreich deinstalliert...                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Start-Sleep -Milliseconds 3000
-    menueauswahl
-}
-
-### .NET Framework 4.6 ###
-function netframework46-menu {
-    do {
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework 4.6                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie .NET Framework installieren oder deinstallieren?                  ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Installieren                   ║ [ 2 ] Deinstallieren                   ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-            $input = Read-Host "Bitte wählen Sie"
-
-            switch ($input) {
-                '1' {netframework46-install}
-                '2' {netframework46-uninstall}
-                'x' {menueauswahl} # Zurück ins Hauptmenü #
-            } pause }
-        until ($input -eq 'x')
-}
-
-### .NET Framework 4.6 installieren ###
-function netframework46-install {
-    cls
-    startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ .NET Framework 4.6                                                            ║"
-        Write-Host "   ╠══════════════════════                                                         ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ .NET Framework 4.6 wird installiert...                                        ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Write-Host ""
-        Start-Sleep -Milliseconds 1500
-        Install-WindowsFeature NET-Framework-45-Core -source \\network\share\sxs | Out-Null
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework 4.6                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ .NET Framework 4.6 wurde erfolgreich installiert...                           ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Start-Sleep -Milliseconds 3000
-    menueauswahl
-}
-
-### .NET Framework 4.6 deinstallieren ###
-function netframework46-uninstall {
-    cls
-    startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ .NET Framework 4.6                                                            ║"
-        Write-Host "   ╠══════════════════════                                                         ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ .NET Framework 4.6 wird deinstalliert...                                      ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Write-Host ""
-        Start-Sleep -Milliseconds 1500
-        Uninstall-WindowsFeature NET-Framework-45-Core | Out-Null
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework 4.6                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ .NET Framework 4.6 wurde erfolgreich deinstalliert...                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Start-Sleep -Milliseconds 3000
-    menueauswahl
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        if(!$princ.IsInRole( `
+            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+            {
+                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                $script = $netframework45_fullscriptpath
+                $prm = $script
+                    foreach($a in $args) {
+                        $prm += ' ' + $a
+                    }
+                $psi.Arguments = $prm
+                $psi.Verb = "runas"
+                [System.Diagnostics.Process]::Start($psi) | Out-Null
+                return;
+            }
+    ### Falls Adminrechte nicht erfordert werden können, ###
+    ### soll das Script trotzdem ausgeführt werden.      ###
+    & $netframework45_fullscriptpath
 }
 
 ### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
@@ -232,8 +118,12 @@ function Get-ScriptDirectory {
 $installpath = Get-ScriptDirectory
 $scriptpath = "\tool_server.ps1"
 $restart_scriptpath = "\script_neustart.ps1"
+$netframework35_scriptpath = "\script_netframework35.ps1"
+$netframework45_scriptpath = "\script_netframework45.ps1"
 $fullscriptpath = $installpath + $scriptpath
 $restart_fullscriptpath = $installpath + $restart_scriptpath
+$netframework35_fullscriptpath = $installpath + $netframework35_scriptpath
+$netframework45_fullscriptpath = $installpath + $netframework45_scriptpath
 
 function entwicklung {
 cls
