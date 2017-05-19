@@ -33,8 +33,8 @@ function netframework {
             $input = Read-Host "Bitte wählen Sie"
 
             switch ($input) {
-                '1' {netframework35-install}
-                '2' {netframework35-uninstall}
+                '1' {netframework-install}
+                '2' {netframework-uninstall}
                 'x' {wsmtool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'x')
