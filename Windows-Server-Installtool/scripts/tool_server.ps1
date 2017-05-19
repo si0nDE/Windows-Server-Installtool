@@ -203,7 +203,7 @@ function domaene_beitreten {
     menueauswahl
 }
 
-### Verstärkte Sicherheitskonfiguration für IE - Menü###
+### Verstärkte Sicherheitskonfiguration für IE - Menü ###
 function iexplorer_sicherheit {
     do {
         cls

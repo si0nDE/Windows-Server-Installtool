@@ -97,5 +97,4 @@ function neustart {
 }
 
 ### Start ###
-startbildschirm
 neustarten
