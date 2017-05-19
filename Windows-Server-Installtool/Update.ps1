@@ -85,6 +85,7 @@ function update_aufraeumen {
         Remove-Item "$installpath\Windows-Server-Installtool-master\.gitattributes"
         Remove-Item "$installpath\Windows-Server-Installtool-master\.gitignore"
         Remove-Item "$installpath\Windows-Server-Installtool-master\_config.yml"
+        Remove-Item "$installpath\Windows-Server-Installtool-master\Geplante Features.txt"
         Remove-Item "$installpath\Windows-Server-Installtool-master\README.md"
         Start-Sleep -Milliseconds 1000
         Remove-Item "$installpath\Windows-Server-Installtool-master\"
