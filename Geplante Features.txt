@@ -9,7 +9,8 @@ Folgende Features und Funktionen sind noch geplant:
 - OneDrive Synchronisationshost de-/aktivieren
 - Fehlermeldung ausgeben, wenn Domäne nicht gewechselt werden konnte
 - IPv6-Einstellungen verwalten
+- NTP-Server verwalten
 
     ###     Letzte Aktualisierung:     ###
     ###                                ###
-    ###     17.05.2017 | 10:22 Uhr     ###
+    ###     19.05.2017 | 10:10 Uhr     ###
