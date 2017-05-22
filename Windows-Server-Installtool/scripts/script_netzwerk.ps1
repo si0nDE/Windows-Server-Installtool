@@ -19,8 +19,6 @@ function Get-ScriptDirectory {
 }
  
 $installpath = Get-ScriptDirectory
-$scriptpath = "\tool_server.ps1"
-$fullscriptpath = $installpath + $scriptpath
 
 ### Netzwerkkonfiguration ändern - Menü ###
 function netzwerktool {
@@ -332,7 +330,7 @@ function wsitool {
             {
                 $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
                 $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
-                $script = $fullscriptpath
+                $script = "$installpath\tool_server.ps1"
                 $prm = $script
                     foreach($a in $args) {
                         $prm += ' ' + $a
@@ -344,7 +342,7 @@ function wsitool {
             }
     ### Falls Adminrechte nicht erfordert werden können, ###
     ### soll das Script trotzdem ausgeführt werden.      ###
-    & $fullscriptpath
+    & "$installpath\tool_server.ps1"
 }
 
 

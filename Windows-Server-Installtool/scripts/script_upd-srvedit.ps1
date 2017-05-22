@@ -19,8 +19,6 @@ function Get-ScriptDirectory {
 }
  
 $installpath = Get-ScriptDirectory
-$scriptpath = "\tool_productkey.ps1"
-$fullscriptpath = $installpath + $scriptpath
 
 $UpdateEdition = ''
 $WunschEdition = ''
@@ -139,7 +137,7 @@ function backtoscript {
         [System.Security.Principal.WindowsBuiltInRole]::Administrator)) {
             $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
             $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
-            $script = $fullscriptpath
+            $script = "$installpath\tool_productkey.ps1"
             $prm = $script
                 foreach($a in $args) {
                     $prm += ' ' + $a
@@ -152,7 +150,7 @@ function backtoscript {
 
     ### Falls Adminrechte nicht erfordert werden können, ###
     ### soll das Script trotzdem ausgeführt werden.      ###
-    & $fullscriptpath
+    & "$installpath\tool_productkey.ps1"
 }
 
 ### Start ###

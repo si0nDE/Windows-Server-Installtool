@@ -7,7 +7,7 @@ cls
 ### Startbildschirm ###
 function startbildschirm {
     Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool v1.7.0                                             ║"
+    Write-Host "║ Windows Server Installtool v1.7.1                                             ║"
     Write-Host "║                                                                               ║"
     Write-Host "║                                                     (c) github.simonfieber.it ║"
     Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
@@ -20,8 +20,6 @@ function Get-ScriptDirectory {
 }
  
 $installpath = Get-ScriptDirectory
-$scriptpath = "\scripts\tool_server.ps1"
-$fullscriptpath = $installpath + $scriptpath
 
 ### Administrationsrechte prüfen und ggf. anfordern ###
 function adminrechte {
@@ -38,7 +36,7 @@ Start-Sleep -Milliseconds 1000
             {
                 $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
                 $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
-                $script = $fullscriptpath
+                $script = "$installpath\scripts\tool_server.ps1"
                 $prm = $script
                     foreach($a in $args) {
                         $prm += ' ' + $a
@@ -50,7 +48,7 @@ Start-Sleep -Milliseconds 1000
             }
     ### Falls Adminrechte nicht erfordert werden können, ###
     ### soll das Script trotzdem ausgeführt werden.      ###
-    & $fullscriptpath 
+    & "$installpath\scripts\tool_server.ps1"
 }
 
 ### Start ###
