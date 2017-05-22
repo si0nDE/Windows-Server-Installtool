@@ -7,10 +7,9 @@ Folgende Features und Funktionen sind noch geplant:
 - Windows SmartScreen de-/aktivieren
 - Aktivieren und Deaktivieren mit 1 und 0, statt ausschlieﬂlich 1 und 2 (geheimes Feature) ;)
 - OneDrive Synchronisationshost de-/aktivieren
-- Fehlermeldung ausgeben, wenn Dom‰ne nicht gewechselt werden konnte
 - IPv6-Einstellungen verwalten
 - NTP-Server verwalten
 
     ###     Letzte Aktualisierung:     ###
     ###                                ###
-    ###     19.05.2017 | 10:10 Uhr     ###
+    ###     19.05.2017 | 14:02 Uhr     ###
