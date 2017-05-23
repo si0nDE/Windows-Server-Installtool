@@ -7,7 +7,7 @@ cls
 ### Startbildschirm ###
     function startbildschirm {
         Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server-Manager Tool v2.0.6α                                           ║"
+        Write-Host "║ Windows Server-Manager Tool v2.0.7α                                           ║"
         Write-Host "║                                                                               ║"
         Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
     }
@@ -19,7 +19,7 @@ cls
         Write-Host "   ╠════════════════════════════════════════                                       ║"
         Write-Host "   ║                                                                               ║"
         Write-Host "   ║ [ 1 ] Active Directory               ║ [  8 ] .NET Framework 3.5              ║"
-        Write-Host "   ║ [ 2 ] DHCP-Server                    ║ [  9 ] .NET Framework 4.5              ║"
+        Write-Host "   ║ [ 2 ] DHCP-Server                    ║ [  9 ] .NET Framework $NET4              ║"
         Write-Host "   ║ [ 3 ] DNS-Server                     ║ [ 10 ] Windows Server Sicherung        ║"
         Write-Host "   ║ [ 4 ] Hyper-V                        ║                                        ║"
         Write-Host "   ║ [ 5 ] Remotedesktopdienste           ║                                        ║"
@@ -30,8 +30,6 @@ cls
         Write-Host "   ║ [ X ] Zurück zum WSI-Tool                                                     ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
     }
-
-
 
 ### Menüauswahl ###
 function menueauswahl {
@@ -196,6 +194,14 @@ function neustarten {
     ### Falls Adminrechte nicht erfordert werden können, ###
     ### soll das Script trotzdem ausgeführt werden.      ###
     & $restart_fullscriptpath
+}
+
+### .NET-Framework Version ermitteln ###
+if([System.Environment]::OSVersion.Version.Major -eq 10){
+    $NET4 = "4.6"
+        }
+else {
+    $NET4 = "4.5"
 }
 
 ### Start ###

@@ -12,13 +12,21 @@ cls
         Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
     }
 
+### .NET-Framework Version ermitteln ###
+if([System.Environment]::OSVersion.Version.Major -eq 10){
+    $NET4 = "4.6"
+        }
+else {
+    $NET4 = "4.5"
+}
+
 ### Menü ###
 function netframework {
     do {
         cls
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework 4.5                                                            ║"
+            Write-Host "   ║ .NET Framework $NET4                                                            ║"
             Write-Host "   ╠══════════════════════                                                         ║"
             Write-Host "   ║                                                                               ║"
             Write-Host "   ║ Möchten Sie .NET Framework installieren oder deinstallieren?                  ║"
@@ -45,10 +53,10 @@ function netframework-install {
     cls
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ .NET Framework 4.5                                                            ║"
+        Write-Host "   ║ .NET Framework $NET4                                                            ║"
         Write-Host "   ╠══════════════════════                                                         ║"
         Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ .NET Framework 4.5 wird installiert...                                        ║"
+        Write-Host "   ║ .NET Framework $NET4 wird installiert...                                        ║"
         Write-Host "   ║                                                                               ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
@@ -57,10 +65,10 @@ function netframework-install {
         cls
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework 4.5                                                            ║"
+            Write-Host "   ║ .NET Framework $NET4                                                            ║"
             Write-Host "   ╠══════════════════════                                                         ║"
             Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ .NET Framework 4.5 wurde erfolgreich installiert...                           ║"
+            Write-Host "   ║ .NET Framework $NET4 wurde erfolgreich installiert...                           ║"
             Write-Host "   ║                                                                               ║"
             Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
@@ -72,10 +80,10 @@ function netframework-uninstall {
     cls
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ .NET Framework 4.5                                                            ║"
+        Write-Host "   ║ .NET Framework $NET4                                                            ║"
         Write-Host "   ╠══════════════════════                                                         ║"
         Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ .NET Framework 4.5 wird deinstalliert...                                      ║"
+        Write-Host "   ║ .NET Framework $NET4 wird deinstalliert...                                      ║"
         Write-Host "   ║                                                                               ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
@@ -84,10 +92,10 @@ function netframework-uninstall {
         cls
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework 4.5                                                            ║"
+            Write-Host "   ║ .NET Framework $NET4                                                            ║"
             Write-Host "   ╠══════════════════════                                                         ║"
             Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ .NET Framework 4.5 wurde erfolgreich deinstalliert...                         ║"
+            Write-Host "   ║ .NET Framework $NET4 wurde erfolgreich deinstalliert...                         ║"
             Write-Host "   ║                                                                               ║"
             Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
