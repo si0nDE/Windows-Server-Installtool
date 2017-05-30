@@ -78,69 +78,28 @@ function productkey_eingeben {
                     menueauswahl
 }
 
-### Product Key aktivieren - Menü ###
 function productkey_aktivieren {
-        do {
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Product Key aktivieren                                                        ║"
-            Write-Host "   ╠══════════════════════════                                                     ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie Ihren Product Key online oder telefonisch aktivieren?             ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Online aktivieren              ║ [ 2 ] Telefonisch aktivieren           ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-
-            $input = Read-Host "Bitte wählen Sie"
-
-            switch ($input) {
-                '1' {productkey_onlaktivieren}
-                '2' {productkey_telaktivieren}
-                'x' {menueauswahl} # Zurück ins Hauptmenü #
-            } pause }
-        until ($input -eq 'x')
-}
-
-### Product Key online aktivieren ###
-function productkey_onlaktivieren {
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Product Key online aktivieren                                                 ║"
-            Write-Host "   ╠═════════════════════════════════                                              ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Product Key wird aktiviert...                                                 ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-            Start-Sleep -Milliseconds 1500
-            slmgr.vbs -ato
-            Start-Sleep -Milliseconds 3000
-            menueauswahl
-}
-
-### Product Key telefonisch aktivieren
-function productkey_telaktivieren {
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Product Key telefonisch aktivieren                                            ║"
-            Write-Host "   ╠══════════════════════════════════════                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Der Assistant zur telefonischen Aktivierung wird geladen...                   ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-            Start-Sleep -Milliseconds 1500
-            slui 4
-            Start-Sleep -Milliseconds 3000
-            menueauswahl
+    cls
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        if(!$princ.IsInRole( `
+            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+            {
+                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                $script = $productkey_aktivierenFULLPATH
+                $prm = $script
+                    foreach($a in $args) {
+                        $prm += ' ' + $a
+                    }
+                $psi.Arguments = $prm
+                $psi.Verb = "runas"
+                [System.Diagnostics.Process]::Start($psi) | Out-Null
+                return;
+            }
+    ### Falls Adminrechte nicht erfordert werden können, ###
+    ### soll das Script trotzdem ausgeführt werden.      ###
+    & $productkey_aktivierenFULLPATH
 }
 
 ### Lizenzinformationen abrufen - Menü ###
@@ -279,11 +238,13 @@ $installpath = Get-ScriptDirectory
 $scriptpath = "\tool_server.ps1"
 $restart_scriptpath = "\script_neustart.ps1"
 $upd_srveditPATH = "\script_upd-srvedit.ps1"
+$productkey_aktivierenPATH = "\script_productkeyactivation.ps1"
 
 ### Volle Scriptpfade generieren ###
 $fullscriptpath = $installpath + $scriptpath
 $restart_fullscriptpath = $installpath + $restart_scriptpath
 $upd_srveditFULLPATH = $installpath + $upd_srveditPATH
+$productkey_aktivierenFULLPATH = $installpath + $productkey_aktivierenPATH
 
 ### Zurück zum Windows Server Installtool ###
 function wsitool {
