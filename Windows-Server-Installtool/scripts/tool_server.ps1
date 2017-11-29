@@ -145,133 +145,27 @@ function workgroupdomaintool {
 
 ### Verstärkte Sicherheitskonfiguration für IE - Menü ###
 function iexplorer_sicherheit {
-    do {
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE                                    ║"
-            Write-Host "   ╠══════════════════════════════════════════════                                 ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Wählen Sie den Benutzer, für den Sie die Sicherheitskonfiguration ändern      ║"
-            Write-Host "   ║ möchten:                                                                      ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Administratoren                ║ [ 2 ] Benutzer                         ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-            $input = Read-Host "Bitte wählen Sie"
-
-            switch ($input) {
-                '1' {iexplorer_adminsicherheit}
-                '2' {iexplorer_usersicherheit}
-                'x' {menueauswahl} # Zurück ins Hauptmenü #
-            } pause }
-        until ($input -eq 'x')
-}
-
-### Verstärkte Sicherheitskonfiguration für IE - Administratoren###
-function iexplorer_adminsicherheit {
-    do {
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Administratoren                  ║"
-            Write-Host "   ╠════════════════════════════════════════════════════════════════               ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie die verstärkte Sicherheitskonfiguration aktivieren                ║"
-            Write-Host "   ║ oder deaktivieren?                                                            ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Aktivieren (empfohlen)         ║ [ 2 ] Deaktivieren                     ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ X ] Zurück zur Benutzerauswahl                                              ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-            $input = Read-Host "Bitte wählen Sie"
-
-            switch ($input) {
-                '1' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "1"
-                    cls
-                    startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Administratoren                  ║"
-                    Write-Host "   ╠════════════════════════════════════════════════════════════════               ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Die Sicherheitskonfiguration für Administratoren wurde aktiviert!             ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-                    Start-Sleep -Milliseconds 3000
-                    iexplorer_sicherheit}
-                '2' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "0"
-                    cls
-                    startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Administratoren                  ║"
-                    Write-Host "   ╠════════════════════════════════════════════════════════════════               ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Die Sicherheitskonfiguration für Administratoren wurde deaktiviert!           ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-                    Start-Sleep -Milliseconds 3000
-                    iexplorer_sicherheit}
-                'x' {iexplorer_sicherheit} # Zurück zur Benutzerauswahl #
-            } pause }
-        until ($input -eq 'x')
-}
-
-### Verstärkte Sicherheitskonfiguration für IE - Benutzer###
-function iexplorer_usersicherheit {
-    do {
-        cls
-        startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Benutzer                         ║"
-            Write-Host "   ╠═════════════════════════════════════════════════════════                      ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie die verstärkte Sicherheitskonfiguration aktivieren                ║"
-            Write-Host "   ║ oder deaktivieren?                                                            ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Aktivieren (empfohlen)         ║ [ 2 ] Deaktivieren                     ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ X ] Zurück zur Benutzerauswahl                                              ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-            Write-Host ""
-            $input = Read-Host "Bitte wählen Sie"
-
-            switch ($input) {
-                '1' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "1"
-                    cls
-                    startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Benutzer                         ║"
-                    Write-Host "   ╠═════════════════════════════════════════════════════════                      ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Die Sicherheitskonfiguration für Benutzer wurde aktiviert!                    ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-                    Start-Sleep -Milliseconds 3000
-                    iexplorer_sicherheit}
-                '2' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "0"
-                    cls
-                    startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Benutzer                         ║"
-                    Write-Host "   ╠═════════════════════════════════════════════════════════                      ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Die Sicherheitskonfiguration für Benutzer wurde deaktiviert!                  ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-                    Start-Sleep -Milliseconds 3000
-                    iexplorer_sicherheit}
-                'x' {menueauswahl} # Zurück zur Benutzerauswahl #
-            } pause }
-        until ($input -eq 'x')
+    cls
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        if(!$princ.IsInRole( `
+            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+            {
+                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                $script = "$installpath\script_iexplorer-sicherheit.ps1"
+                $prm = $script
+                    foreach($a in $args) {
+                        $prm += ' ' + $a
+                    }
+                $psi.Arguments = $prm
+                $psi.Verb = "runas"
+                [System.Diagnostics.Process]::Start($psi) | Out-Null
+                return;
+            }
+    ### Falls Adminrechte nicht erfordert werden können, ###
+    ### soll das Script trotzdem ausgeführt werden.      ###
+    & "$installpath\script_iexplorer-sicherheit.ps1"
 }
 
 ### Dienst verwalten: MapsBroker ###
