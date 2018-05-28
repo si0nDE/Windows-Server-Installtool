@@ -12,7 +12,7 @@ function startbildschirm {
     Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
     Write-Host "║ Windows Server Install Update-Tool                                            ║"
     Write-Host "║                                                                               ║"
-    Write-Host "║                                                     (c) github.simonfieber.it ║"
+    Write-Host "║                                                        (c) www.simonfieber.it ║"
     Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
 }
 
