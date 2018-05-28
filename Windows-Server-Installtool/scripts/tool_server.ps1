@@ -18,10 +18,10 @@ function menue {
         Write-Host "   ║ Hauptmenü                                                                     ║"
         Write-Host "   ╠═════════════                                                                  ║"
         Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 5 ] Dienst verwalten: MapsBroker     ║"
-        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 6 ] Dienst verwalten: OneSyncSvc     ║"
-        Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten ║ [ 7 ] Remotedesktop einrichten         ║"
-        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration    ║                                        ║"
+        Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 5 ] Cortana & Bing-Suche verwalten   ║"
+        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 6 ] Dienst verwalten: MapsBroker     ║"
+        Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten ║ [ 7 ] Dienst verwalten: OneSyncSvc     ║"
+        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration    ║ [ 8 ] Remotedesktop einrichten         ║"
         Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
         Write-Host "   ║                                                                               ║"
         Write-Host "   ║ [ 0 ] Windows neustarten             ║ [ S ] Serverrollen und -features       ║"
@@ -45,9 +45,10 @@ function menueauswahl {
                 '2' {netzwerktool}
                 '3' {workgroupdomaintool}
                 '4' {iexplorer_sicherheit}
-                '5' {Start-MapsBroker-Tool}
-                '6' {Start-OneSyncSvc-Tool}
-                '7' {remotedesktoptool}
+                '5' {Start-Cortana-Tool}
+                '6' {Start-MapsBroker-Tool}
+                '7' {Start-OneSyncSvc-Tool}
+                '8' {remotedesktoptool}
                 'p' {wpktool}
                 's' {wsmtool}
                 'x' {[Environment]::Exit(1)}
@@ -167,6 +168,33 @@ function iexplorer_sicherheit {
     ### soll das Script trotzdem ausgeführt werden.      ###
     & "$installpath\script_iexplorer-sicherheit.ps1"
 }
+
+
+### Cortana & Bing-Suche aktivieren/deaktivieren ###
+function Start-Cortana-Tool {
+    cls
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        if(!$princ.IsInRole( `
+            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+            {
+                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                $script = "$installpath\script_iexplorer-sicherheit.ps1"
+                $prm = $script
+                    foreach($a in $args) {
+                        $prm += ' ' + $a
+                    }
+                $psi.Arguments = $prm
+                $psi.Verb = "runas"
+                [System.Diagnostics.Process]::Start($psi) | Out-Null
+                return;
+            }
+    ### Falls Adminrechte nicht erfordert werden können, ###
+    ### soll das Script trotzdem ausgeführt werden.      ###
+    & "$installpath\script_cortana.ps1"
+}
+
 
 ### Dienst verwalten: MapsBroker ###
 function Start-MapsBroker-Tool {
