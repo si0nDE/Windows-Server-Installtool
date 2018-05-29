@@ -35,7 +35,7 @@ function Unzip
 }
 
 ### Updateroutine ###
-$source = "https://github.com/simonfieberIT/Windows-Server-Installtool/archive/master.zip"
+$source = "https://github.com/si0nDE/Windows-Server-Installtool/archive/master.zip"
 
 function update_herunterladen {
     cls
@@ -45,7 +45,8 @@ function update_herunterladen {
         Write-Host "    ║                                                                               ║"
         Write-Host "    ╚═══════════════════════════════════════════════════════════════════════════════╝"
         $error.Clear()
-        try{Invoke-WebRequest -Uri $source -OutFile "$installpath\update.zip"}
+        try{[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            Invoke-WebRequest -Uri $source -OutFile "$installpath\update.zip"}
         catch{
             Start-Sleep -Milliseconds 1500
             Write-Host "        ╔═══════════════════════════════════════════════════════════════════════════════╗"
