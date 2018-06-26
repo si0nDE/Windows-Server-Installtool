@@ -31,7 +31,7 @@ function netframework {
             Write-Host "   ║                                                                               ║"
             Write-Host "   ║ Möchten Sie .NET Framework installieren oder deinstallieren?                  ║"
             Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Installieren                   ║ [ 2 ] Deinstallieren                   ║"
+            Write-Host "   ║ [ 1 ] Installieren                   ║ [ 0 ] Deinstallieren                   ║"
             Write-Host "   ║                                      ║                                        ║"
             Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
             Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
@@ -42,7 +42,7 @@ function netframework {
 
             switch ($input) {
                 '1' {netframework46-install}
-                '2' {netframework46-uninstall}
+                '0' {netframework46-uninstall}
                 'x' {wsmtool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'x')
