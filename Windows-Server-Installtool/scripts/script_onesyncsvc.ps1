@@ -6,10 +6,10 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-    Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool                                                    ║"
-    Write-Host "║                                                                               ║"
-    Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+    Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+    Write-Host "║ Windows Server Installtool                                                   ║"
+    Write-Host "║                                                                              ║"
+    Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Dienst verwalten: OneSync-Synchronisierungshost ###
@@ -17,18 +17,19 @@ function Start-OneSyncSvc-Tool {
     do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ OneSync-Synchronisierungshost (OneSyncSvc)                                    ║"
-            Write-Host "   ╠══════════════════════════════════════════════                                 ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie den OneSyncSvc-Dienst automatisch oder manuell aktivieren lassen? ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Automatisch (Standard)         ║ [ 2 ] Manuell                          ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ OneSync-Synchronisierungshost (OneSyncSvc)                                ║"
+            Write-Host "   ╠══════════════════════════════════════════════                             ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie den OneSyncSvc-Dienst automatisch oder                        ║"
+            Write-Host "   ║ manuell aktivieren lassen?                                                ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 1 ] Automatisch (Standard)       ║ [ 2 ] Manuell                        ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             $input = Read-Host "Bitte wählen Sie"
 
@@ -36,25 +37,25 @@ function Start-OneSyncSvc-Tool {
                 '1' {Set-Service -Name "OneSyncSvc" -StartupType Automatic
                     cls
                     startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ OneSync-Synchronisierungshost (OneSyncSvc)                                    ║"
-                    Write-Host "   ╠══════════════════════════════════════════════                                 ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Der OneSyncSvc-Dienst wird nun automatisch gestartet.                         ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ OneSync-Synchronisierungshost (OneSyncSvc)                                ║"
+                    Write-Host "   ╠══════════════════════════════════════════════                             ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ║ Der OneSyncSvc-Dienst wird nun automatisch gestartet.                     ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
                     Start-Sleep -Milliseconds 3000
                     wsitool}
                 '2' {Set-Service -Name "OneSyncSvc" -StartupType Manual
                     cls
                     startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ OneSync-Synchronisierungshost (OneSyncSvc)                                    ║"
-                    Write-Host "   ╠══════════════════════════════════════════════                                 ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Der OneSyncSvc-Dienst wird ab sofort nicht mehr automatisch gestartet.        ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ OneSync-Synchronisierungshost (OneSyncSvc)                                ║"
+                    Write-Host "   ╠══════════════════════════════════════════════                             ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ║ Der OneSyncSvc-Dienst wird ab sofort nicht mehr automatisch gestartet.    ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
                     Start-Sleep -Milliseconds 3000
                     wsitool}
                 'x' {wsitool} # Zurück zur Benutzerauswahl #

@@ -6,10 +6,10 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-    Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool                                                    ║"
-    Write-Host "║                                                                               ║"
-    Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+    Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+    Write-Host "║ Windows Server Installtool                                                   ║"
+    Write-Host "║                                                                              ║"
+    Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Cortana & Bing-Suche aktivieren/deaktivieren ###
@@ -17,18 +17,18 @@ function Start-Cortana-Tool {
     do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Cortana & Bing-Suche                                                          ║"
-            Write-Host "   ╠════════════════════════                                                       ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie Cortana und die Bing-Suche aktivieren oder deaktivieren?          ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Aktivieren (Standard)          ║ [ 2 ] Deaktivieren                     ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Cortana & Bing-Suche                                                      ║"
+            Write-Host "   ╠════════════════════════                                                   ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie Cortana und die Bing-Suche aktivieren oder deaktivieren?      ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 1 ] Aktivieren (Standard)        ║ [ 2 ] Deaktivieren                   ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             $input = Read-Host "Bitte wählen Sie"
 
@@ -38,13 +38,13 @@ function Start-Cortana-Tool {
                      Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name CortanaConsent
                     cls
                     startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Cortana & Bing-Suche                                                          ║"
-                    Write-Host "   ╠════════════════════════                                                       ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Cortana und die Bing-Suche wurden aktiviert.                                  ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Cortana & Bing-Suche                                                      ║"
+                    Write-Host "   ╠════════════════════════                                                   ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ║ Cortana und die Bing-Suche wurden aktiviert.                              ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
                     Stop-Process -ProcessName explorer
                     $explorer = gwmi -computer . -query "select * from win32_process where CommandLine!='explorer.exe' And name='explorer.exe'"
                     foreach ($explorer in $explorer) {
@@ -57,13 +57,13 @@ function Start-Cortana-Tool {
                      New-ItemProperty -Type DWord -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name CortanaConsent -value "0"
                     cls
                     startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Cortana & Bing-Suche                                                          ║"
-                    Write-Host "   ╠════════════════════════                                                       ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Cortana und die Bing-Suche wurden deaktiviert.                                ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Cortana & Bing-Suche                                                      ║"
+                    Write-Host "   ╠════════════════════════                                                   ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ║ Cortana und die Bing-Suche wurden deaktiviert.                            ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
                     Stop-Process -ProcessName explorer
                     $explorer = gwmi -computer . -query "select * from win32_process where CommandLine!='explorer.exe' And name='explorer.exe'"
                     foreach ($explorer in $explorer) {

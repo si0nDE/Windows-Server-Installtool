@@ -6,11 +6,11 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-    Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool v1.8.4                                             ║"
-    Write-Host "║                                                                               ║"
-    Write-Host "║                                                        (c) www.simonfieber.it ║"
-    Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+    Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+    Write-Host "║ Windows Server Installtool v1.8.5                                            ║"
+    Write-Host "║                                                                              ║"
+    Write-Host "║                                                       (c) www.simonfieber.it ║"
+    Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
@@ -24,10 +24,10 @@ $installpath = Get-ScriptDirectory
 ### Administrationsrechte prüfen und ggf. anfordern ###
 function adminrechte {
 Start-Sleep -Milliseconds 1000
-    Write-Host "        ╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "        ║ Administrationsrechte werden angefordert...                                   ║"
-    Write-Host "        ║                                                                               ║"
-    Write-Host "        ╚═══════════════════════════════════════════════════════════════════════════════╝"
+    Write-Host "        ╔══════════════════════════════════════════════════════════════════════╗"
+    Write-Host "        ║ Administrationsrechte werden angefordert...                          ║"
+    Write-Host "        ║                                                                      ║"
+    Write-Host "        ╚══════════════════════════════════════════════════════════════════════╝"
     Start-Sleep -Milliseconds 1500
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)

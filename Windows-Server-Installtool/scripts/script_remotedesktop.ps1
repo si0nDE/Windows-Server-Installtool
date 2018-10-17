@@ -6,28 +6,29 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-    Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool                                                    ║"
-    Write-Host "║                                                                               ║"
-    Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+    Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+    Write-Host "║ Windows Server Installtool                                                   ║"
+    Write-Host "║                                                                              ║"
+    Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 function Start-RemoteDesktop-Tool {
     do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Remotedesktop einrichten                                                      ║"
-            Write-Host "   ╠════════════════════════════                                                   ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie die RDP-Verbindung zu diesem Server aktivieren oder deaktivieren? ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Aktivieren                     ║ [ 2 ] Deaktivieren                     ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Remotedesktop einrichten                                                  ║"
+            Write-Host "   ╠════════════════════════════                                               ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie die RDP-Verbindung zu diesem Server                           ║"
+            Write-Host "   ║ aktivieren oder deaktivieren?                                             ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 1 ] Aktivieren                   ║ [ 2 ] Deaktivieren                   ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             $input = Read-Host "Bitte wählen Sie"
 
@@ -36,26 +37,26 @@ function Start-RemoteDesktop-Tool {
                      Enable-NetFirewallRule -DisplayGroup “Remotedesktop”
                     cls
                     startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Remotedesktop einrichten                                                      ║"
-                    Write-Host "   ╠════════════════════════════                                                   ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ RDP-Verbindungen zu diesem Server wurden aktiviert!                           ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Remotedesktop einrichten                                                  ║"
+                    Write-Host "   ╠════════════════════════════                                               ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ║ RDP-Verbindungen zu diesem Server wurden aktiviert!                       ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
                     Start-Sleep -Milliseconds 3000
                     wsitool}
                 '2' {Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value "1"
                      Disable-NetFirewallRule -DisplayGroup “Remotedesktop”
                     cls
                     startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Remotedesktop einrichten                                                      ║"
-                    Write-Host "   ╠════════════════════════════                                                   ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ RDP-Verbindungen zu diesem Server wurden deaktiviert!                         ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Remotedesktop einrichten                                                  ║"
+                    Write-Host "   ╠════════════════════════════                                               ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ║ RDP-Verbindungen zu diesem Server wurden deaktiviert!                     ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
                     Start-Sleep -Milliseconds 3000
                     wsitool}
                 'x' {wsitool} # Zurück ins Hauptmenü #

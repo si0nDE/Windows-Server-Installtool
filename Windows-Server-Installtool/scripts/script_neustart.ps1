@@ -6,10 +6,10 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-        Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server Installtool                                                    ║"
-        Write-Host "║                                                                               ║"
-        Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "║ Windows Server Installtool                                                   ║"
+        Write-Host "║                                                                              ║"
+        Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
@@ -25,15 +25,15 @@ function neustarten {
     do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Windows neustarten                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie Windows wirklich neustarten?                                      ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ J ] Ja                             ║ [ N ] Nein                             ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╚══════════════════════════════════════╩════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Windows neustarten                                                        ║"
+            Write-Host "   ╠══════════════════════                                                     ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie Windows wirklich neustarten?                                  ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ J ] Ja                           ║ [ N ] Nein                           ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╚════════════════════════════════════╩══════════════════════════════════════╝"
             Write-Host ""
             $input = Read-Host "Bitte wählen Sie"
 
@@ -71,13 +71,13 @@ function wsitool {
 function neustart {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows neustarten                                                            ║"
-        Write-Host "   ╠══════════════════════                                                         ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Windows wird neugestartet!                                                    ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows neustarten                                                        ║"
+        Write-Host "   ╠══════════════════════                                                     ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Windows wird neugestartet!                                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         Start-Sleep -Milliseconds 5000
         Restart-Computer -Force

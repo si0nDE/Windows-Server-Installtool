@@ -6,27 +6,27 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-        Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Product Key Tool                                                      ║"
-        Write-Host "║                                                                               ║"
-        Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "║ Windows Product Key Tool                                                     ║"
+        Write-Host "║                                                                              ║"
+        Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Menü ###
 function menue {
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Hauptmenü                                                                     ║"
-        Write-Host "   ╠═════════════                                                                  ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ [ 1 ] Product Key eingeben                                                    ║"
-        Write-Host "   ║ [ 2 ] Product Key aktivieren                                                  ║"
-        Write-Host "   ║ [ 3 ] Aktuell installierte Edition abfragen                                   ║"
-        Write-Host "   ║ [ 4 ] Windows-Edition aktualisieren                                           ║"
-        Write-Host "   ║ [ 5 ] Lizenzinformationen abrufen                                             ║"
-        Write-Host "   ╠═══════════════════════════════════════════════════════════════════════════════╣"
-        Write-Host "   ║ [ 0 ] Windows neustarten                                                      ║"
-        Write-Host "   ║ [ X ] Zurück zum WSI-Tool                                                     ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hauptmenü                                                                 ║"
+        Write-Host "   ╠═════════════                                                              ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ [ 1 ] Product Key eingeben                                                ║"
+        Write-Host "   ║ [ 2 ] Product Key aktivieren                                              ║"
+        Write-Host "   ║ [ 3 ] Aktuell installierte Edition abfragen                               ║"
+        Write-Host "   ║ [ 4 ] Windows-Edition aktualisieren                                       ║"
+        Write-Host "   ║ [ 5 ] Lizenzinformationen abrufen                                         ║"
+        Write-Host "   ╠═══════════════════════════════════════════════════════════════════════════╣"
+        Write-Host "   ║ [ 0 ] Windows neustarten                                                  ║"
+        Write-Host "   ║ [ X ] Zurück zum WSI-Tool                                                 ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Menüauswahl ###
@@ -54,24 +54,24 @@ function menueauswahl {
 function productkey_eingeben {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Product Key eingeben                                                          ║"
-            Write-Host "   ╠════════════════════════                                                       ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Bitte geben Sie den gewünschten Product Key im folgenden Format ein:          ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║     XXXXX-XXXXX-XXXXX-XXXXX-XXXXX                                             ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Product Key eingeben                                                      ║"
+            Write-Host "   ╠════════════════════════                                                   ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Bitte geben Sie den gewünschten Product Key im folgenden Format ein:      ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║     XXXXX-XXXXX-XXXXX-XXXXX-XXXXX                                         ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             $ProductKey = Read-Host "Product Key"
 
             cls
                 startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Product Key wird installiert...                                               ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Product Key wird installiert...                                           ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
                     Start-Sleep -Milliseconds 1500
                     slmgr.vbs -ipk $ProductKey
                     Start-Sleep -Milliseconds 3000
@@ -107,18 +107,18 @@ function lizenzinfo_abrufen {
         do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Lizenzinformationen abrufen                                                   ║"
-            Write-Host "   ╠═══════════════════════════════                                                ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie einfache oder erweiterte Lizenzinformationen abrufen?             ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] einfache Informationen         ║ [ 2 ] erweiterte Informationen         ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Lizenzinformationen abrufen                                               ║"
+            Write-Host "   ╠═══════════════════════════════                                            ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie einfache oder erweiterte Lizenzinformationen abrufen?         ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 1 ] einfache Informationen       ║ [ 2 ] erweiterte Informationen       ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
 
             $input = Read-Host "Bitte wählen Sie"
@@ -135,17 +135,17 @@ function lizenzinfo_abrufen {
 function lizenzinfo_einfach {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Lizenzinformationen abrufen                                                   ║"
-        Write-Host "   ╠═══════════════════════════════                                                ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Möchten Sie einfache oder erweiterte Lizenzinformationen abrufen?             ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Write-Host "      ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "      ║ Einfache Lizenzinformationen werden abgerufen...                              ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Lizenzinformationen abrufen                                               ║"
+        Write-Host "   ╠═══════════════════════════════                                            ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Möchten Sie einfache oder erweiterte Lizenzinformationen abrufen?         ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "      ║ Einfache Lizenzinformationen werden abgerufen...                       ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ╚════════════════════════════════════════════════════════════════════════╝"
         slmgr.vbs -dli
         Write-Host ""
         Start-Sleep -Milliseconds 3000
@@ -156,17 +156,17 @@ function lizenzinfo_einfach {
 function lizenzinfo_erweitert {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Lizenzinformationen abrufen                                                   ║"
-        Write-Host "   ╠═══════════════════════════════                                                ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Möchten Sie einfache oder erweiterte Lizenzinformationen abrufen?             ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
-        Write-Host "      ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "      ║ Erweiterte Lizenzinformationen werden abgerufen...                            ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Lizenzinformationen abrufen                                               ║"
+        Write-Host "   ╠═══════════════════════════════                                            ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Möchten Sie einfache oder erweiterte Lizenzinformationen abrufen?         ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "      ║ Erweiterte Lizenzinformationen werden abgerufen...                     ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ╚════════════════════════════════════════════════════════════════════════╝"
         slmgr.vbs -dlv
         Write-Host ""
         Start-Sleep -Milliseconds 3000
@@ -178,23 +178,23 @@ function installierte_edition {
     cls
     startbildschirm
     $Edition = ''
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Installierte Edition abfragen                                                 ║"
-        Write-Host "   ╠═════════════════════════════════                                              ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Edition wird abgefragt...                                                     ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Installierte Edition abfragen                                             ║"
+        Write-Host "   ╠═════════════════════════════════                                          ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Edition wird abgefragt...                                                 ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         $Edition = DISM /online /Get-CurrentEdition
             cls
             startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Installierte Edition abfragen                                                 ║"
-            Write-Host "   ╠═════════════════════════════════                                              ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Wir haben folgende Rückmeldung erhalten:                                      ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Installierte Edition abfragen                                             ║"
+            Write-Host "   ╠═════════════════════════════════                                          ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Wir haben folgende Rückmeldung erhalten:                                  ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             $Edition[8]
             Write-Host ""
@@ -250,13 +250,13 @@ $productkey_aktivierenFULLPATH = $installpath + $productkey_aktivierenPATH
 function wsitool {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows Server Installtool                                                    ║"
-        Write-Host "   ╠═══════════════════════════════                                                ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Das Programm wird gewechselt...                                               ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows Server Installtool                                                ║"
+        Write-Host "   ╠═══════════════════════════════                                            ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Das Programm wird gewechselt...                                           ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Start-Sleep -Milliseconds 1500
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)

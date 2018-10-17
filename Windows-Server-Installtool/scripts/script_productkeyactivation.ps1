@@ -6,10 +6,10 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-    Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Product Key Tool                                                      ║"
-    Write-Host "║                                                                               ║"
-    Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+    Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+    Write-Host "║ Windows Product Key Tool                                                     ║"
+    Write-Host "║                                                                              ║"
+    Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Product Key aktivieren - Menü ###
@@ -17,18 +17,18 @@ function Start-ProductKeyActivation {
         do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Product Key aktivieren                                                        ║"
-            Write-Host "   ╠══════════════════════════                                                     ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie Ihren Product Key online oder telefonisch aktivieren?             ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Online aktivieren              ║ [ 2 ] Telefonisch aktivieren           ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Product Key aktivieren                                                    ║"
+            Write-Host "   ╠══════════════════════════                                                 ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie Ihren Product Key online oder telefonisch aktivieren?         ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 1 ] Online aktivieren            ║ [ 2 ] Telefonisch aktivieren         ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
 
             $input = Read-Host "Bitte wählen Sie"
@@ -45,13 +45,13 @@ function Start-ProductKeyActivation {
 function Activate-ProductKey-Online {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Product Key online aktivieren                                                 ║"
-            Write-Host "   ╠═════════════════════════════════                                              ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Product Key wird aktiviert...                                                 ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Product Key online aktivieren                                             ║"
+            Write-Host "   ╠═════════════════════════════════                                          ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Product Key wird aktiviert...                                             ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             Start-Sleep -Milliseconds 1500
             slmgr.vbs -ato
@@ -63,13 +63,13 @@ function Activate-ProductKey-Online {
 function Activate-ProductKey-Phone {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Product Key telefonisch aktivieren                                            ║"
-            Write-Host "   ╠══════════════════════════════════════                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Der Assistant zur telefonischen Aktivierung wird geladen...                   ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Product Key telefonisch aktivieren                                        ║"
+            Write-Host "   ╠══════════════════════════════════════                                     ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Der Assistant zur telefonischen Aktivierung wird geladen...               ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             Start-Sleep -Milliseconds 1500
             slui 4

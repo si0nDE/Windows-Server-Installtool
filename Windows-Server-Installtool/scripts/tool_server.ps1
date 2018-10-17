@@ -6,27 +6,27 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-        Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server Installtool                                                    ║"
-        Write-Host "║                                                                               ║"
-        Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "║ Windows Server Installtool                                                   ║"
+        Write-Host "║                                                                              ║"
+        Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Menü ###
 function menue {
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Hauptmenü                                                                     ║"
-        Write-Host "   ╠═════════════                                                                  ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ [ 1 ] Hostnamen ändern               ║ [ 5 ] Cortana & Bing-Suche verwalten   ║"
-        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern   ║ [ 6 ] Dienst verwalten: MapsBroker     ║"
-        Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten ║ [ 7 ] Dienst verwalten: OneSyncSvc     ║"
-        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration    ║ [ 8 ] Remotedesktop einrichten         ║"
-        Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ [ 0 ] Windows neustarten             ║ [ S ] Serverrollen und -features       ║"
-        Write-Host "   ║ [ X ] Programm beenden               ║ [ P ] Windows Product Key Tool         ║"
-        Write-Host "   ╚══════════════════════════════════════╩════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hauptmenü                                                                 ║"
+        Write-Host "   ╠═════════════                                                              ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ [ 1 ] Hostnamen ändern              ║ [ 5 ] Cortana & Bing-Suche verwalten║"
+        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern  ║ [ 6 ] Dienst verwalten: MapsBroker  ║"
+        Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten║ [ 7 ] Dienst verwalten: OneSyncSvc  ║"
+        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration   ║ [ 8 ] Remotedesktop einrichten      ║"
+        Write-Host "   ╠═════════════════════════════════════╩═════════════════════════════════════╣"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ [ 0 ] Windows neustarten            ║ [ S ] Serverrollen und -features    ║"
+        Write-Host "   ║ [ X ] Programm beenden              ║ [ P ] Windows Product Key Tool      ║"
+        Write-Host "   ╚═════════════════════════════════════╩═════════════════════════════════════╝"
 }
 
 
@@ -64,13 +64,13 @@ function hostnametool {
     $hostname = ''
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Hostnamen ändern                                                              ║"
-        Write-Host "   ╠════════════════════                                                           ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Geben Sie einen neuen Hostnamen für diesen Windows Server ein...              ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hostnamen ändern                                                          ║"
+        Write-Host "   ╠════════════════════                                                       ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Geben Sie einen neuen Hostnamen für diesen Windows Server ein...          ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         $hostname = Read-Host "Neuer Hostname"
         Write-Host ""
@@ -78,15 +78,15 @@ function hostnametool {
         $computerinfo.Rename($hostname) | Out-Null
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Hostnamen ändern                                                              ║"
-            Write-Host "   ╠════════════════════                                                           ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Der Hostname wurde erfolgreich geändert.                                      ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Ein Neustart ist erforderlich!                                                ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Hostnamen ändern                                                          ║"
+            Write-Host "   ╠════════════════════                                                       ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Der Hostname wurde erfolgreich geändert.                                  ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Ein Neustart ist erforderlich!                                            ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
     menueauswahl
 }
@@ -291,13 +291,13 @@ $netzwerk_fullscriptpath = $installpath + $netzwerk_scriptpath
 function wpktool {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows Product Key Tool                                                      ║"
-        Write-Host "   ╠════════════════════════════                                                   ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Das Programm wird gewechselt...                                               ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows Product Key Tool                                                  ║"
+        Write-Host "   ╠════════════════════════════                                               ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Das Programm wird gewechselt...                                           ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Start-Sleep -Milliseconds 1500
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
@@ -325,13 +325,13 @@ function wpktool {
 function wsmtool {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows Server-Manager Tool                                                   ║"
-        Write-Host "   ╠═══════════════════════════════                                                ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Das Programm wird gewechselt...                                               ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows Server-Manager Tool                                               ║"
+        Write-Host "   ╠═══════════════════════════════                                            ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Das Programm wird gewechselt...                                           ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Start-Sleep -Milliseconds 1500
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)

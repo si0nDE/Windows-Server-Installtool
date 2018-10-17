@@ -6,10 +6,10 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-    Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool                                                    ║"
-    Write-Host "║                                                                               ║"
-    Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+    Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+    Write-Host "║ Windows Server Installtool                                                   ║"
+    Write-Host "║                                                                              ║"
+    Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Arbeitsgruppe/Domäne beitreten - Menü ###
@@ -17,18 +17,18 @@ function Start-WorkgroupDomain-Tool {
     do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Arbeitsgruppe/Domäne beitreten                                                ║"
-            Write-Host "   ╠══════════════════════════════════                                             ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie einer Arbeitsgruppe oder einer Domäne beitreten?                  ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Arbeitsgruppe                  ║ [ 2 ] Domäne                           ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Arbeitsgruppe/Domäne beitreten                                            ║"
+            Write-Host "   ╠══════════════════════════════════                                         ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie einer Arbeitsgruppe oder einer Domäne beitreten?              ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 1 ] Arbeitsgruppe                ║ [ 2 ] Domäne                         ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             $input = Read-Host "Bitte wählen Sie"
 
@@ -44,13 +44,13 @@ function Start-WorkgroupDomain-Tool {
 function Join-Workgroup {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Arbeitsgruppe beitreten                                                       ║"
-        Write-Host "   ╠═══════════════════════════                                                    ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Geben Sie die Arbeitsgruppe ein, der Sie beitreten möchten...                 ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Arbeitsgruppe beitreten                                                   ║"
+        Write-Host "   ╠═══════════════════════════                                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Geben Sie die Arbeitsgruppe ein, der Sie beitreten möchten...             ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         $neuearbeitsgruppe = Read-Host "Neue Arbeitsgruppe"
         Start-Sleep -Milliseconds 1500
@@ -59,29 +59,29 @@ function Join-Workgroup {
         catch{
             cls
             startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Arbeitsgruppe beitreten                                                       ║"
-            Write-Host "   ╠═══════════════════════════                                                    ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Die Arbeitsgruppe konnte nicht geändert werden.                               ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║     Bitte wenden Sie sich an Ihren Systemadministrator!                       ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Arbeitsgruppe beitreten                                                   ║"
+            Write-Host "   ╠═══════════════════════════                                                ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Die Arbeitsgruppe konnte nicht geändert werden.                           ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║     Bitte wenden Sie sich an Ihren Systemadministrator!                   ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
         }
         if (!$error) {
             cls
             startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Arbeitsgruppe beitreten                                                       ║"
-            Write-Host "   ╠═══════════════════════════                                                    ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Die Arbeitsgruppe wurde erfolgreich geändert.                                 ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║     Ein Neustart ist erforderlich!                                            ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Arbeitsgruppe beitreten                                                   ║"
+            Write-Host "   ╠═══════════════════════════                                                ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Die Arbeitsgruppe wurde erfolgreich geändert.                             ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║     Ein Neustart ist erforderlich!                                        ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
         }
     wsitool
@@ -91,13 +91,13 @@ function Join-Workgroup {
 function Join-Domain {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Domäne beitreten                                                              ║"
-        Write-Host "   ╠════════════════════                                                           ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Geben Sie die Domäne ein, der Sie beitreten möchten...                        ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Domäne beitreten                                                          ║"
+        Write-Host "   ╠════════════════════                                                       ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Geben Sie die Domäne ein, der Sie beitreten möchten...                    ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         $neuedomaene = Read-Host "Neue Domäne"
         $benutzername = Read-Host "Benutzername"
@@ -107,29 +107,29 @@ function Join-Domain {
         catch{
             cls
             startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Domäne beitreten                                                              ║"
-            Write-Host "   ╠════════════════════                                                           ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Der Domäne konnte nicht beigetreten werden.                                   ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║     Bitte wenden Sie sich an Ihren Systemadministrator!                       ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Domäne beitreten                                                          ║"
+            Write-Host "   ╠════════════════════                                                       ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Der Domäne konnte nicht beigetreten werden.                               ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║     Bitte wenden Sie sich an Ihren Systemadministrator!                   ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
         }
         if (!$error) {
             cls
             startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Domäne beitreten                                                              ║"
-            Write-Host "   ╠════════════════════                                                           ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Die Domäne wurde erfolgreich geändert.                                        ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║     Ein Neustart ist erforderlich!                                            ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Domäne beitreten                                                          ║"
+            Write-Host "   ╠════════════════════                                                       ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Die Domäne wurde erfolgreich geändert.                                    ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║     Ein Neustart ist erforderlich!                                        ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
         }
     wsitool

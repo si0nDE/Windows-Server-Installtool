@@ -6,10 +6,10 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-        Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server Installtool                                                    ║"
-        Write-Host "║                                                                               ║"
-        Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "║ Windows Server Installtool                                                   ║"
+        Write-Host "║                                                                              ║"
+        Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
@@ -25,18 +25,18 @@ function netzwerktool {
     do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Netzwerkkonfiguration ändern                                                  ║"
-            Write-Host "   ╠════════════════════════════════                                               ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Bitte wählen Sie das gewünschte Internetprotokoll aus:                        ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 4 ] IPv4                           ║ [ 6 ] IPv6                             ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║ [ 0 ] Aktuelle Netzwerkkonfiguration anzeigen                                 ║"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Netzwerkkonfiguration ändern                                              ║"
+            Write-Host "   ╠════════════════════════════════                                           ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Bitte wählen Sie das gewünschte Internetprotokoll aus:                    ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 4 ] IPv4                         ║ [ 6 ] IPv6                           ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║ [ 0 ] Aktuelle Netzwerkkonfiguration anzeigen                             ║"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
 
             $input = Read-Host "Bitte wählen Sie"
@@ -54,13 +54,13 @@ function netzwerktool {
 function Show-NetConf {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Aktuelle Netzwerkkonfiguration                                                ║"
-        Write-Host "   ╠══════════════════════════════════                                             ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Die aktuelle Netzwerkkonfiguration wird abgerufen...                          ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Aktuelle Netzwerkkonfiguration                                            ║"
+        Write-Host "   ╠══════════════════════════════════                                         ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Die aktuelle Netzwerkkonfiguration wird abgerufen...                      ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         Get-NetIPConfiguration
         Write-Host ""
@@ -71,15 +71,15 @@ function Show-NetConf {
 function IPv4conf_ifIndex {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-        Write-Host "   ╠═══════════════════════════════════════                                        ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Auf welchen Netzwerkport soll die Konfiguration eingerichtet werden?          ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Bitte geben Sie den 'InterfaceIndex' ein...                                   ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                       ║"
+        Write-Host "   ╠═══════════════════════════════════════                                    ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Auf welchen Netzwerkport soll die Konfiguration eingerichtet werden?      ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Bitte geben Sie den 'InterfaceIndex' ein...                               ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
 
         Get-NetAdapter | ft Name, ifIndex, Status, InterfaceDescription
 
@@ -92,18 +92,18 @@ function IPv4conf_Menu {
     do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-            Write-Host "   ╠═══════════════════════════════════════                                        ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie eine statische oder dynamische Netzwerkkonfiguration?             ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Dynamisch (DHCP)               ║ [ 2 ] Statisch                         ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ X ] Vorgang abbrechen                                                       ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                       ║"
+            Write-Host "   ╠═══════════════════════════════════════                                    ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie eine statische oder dynamische Netzwerkkonfiguration?         ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 1 ] Dynamisch (DHCP)             ║ [ 2 ] Statisch                       ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ X ] Vorgang abbrechen                                                   ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
 
             $input = Read-Host "Bitte wählen Sie"
@@ -123,13 +123,13 @@ function Set-IPv4conf_DHCP {
 
     cls
     startbildschirm
-        Write-Host "      ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-        Write-Host "      ╠═══════════════════════════════════════                                        ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ║  Die Netzwerkkonfiguration wird nun dynamisch bezogen.                        ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                    ║"
+        Write-Host "      ╠═══════════════════════════════════════                                 ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ║  Die Netzwerkkonfiguration wird nun dynamisch bezogen.                 ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ╚════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         pause
         netzwerktool
@@ -146,13 +146,13 @@ Start-Sleep -Milliseconds  500
 
 function IPv4conf_IP-Address1 {
     $IP_Address = ""
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-        Write-Host "   ╠═══════════════════════════════════════                                        ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Geben Sie die neue IP-Adresse für diesen Host ein...                          ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                       ║"
+        Write-Host "   ╠═══════════════════════════════════════                                    ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Geben Sie die neue IP-Adresse für diesen Host ein...                      ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
 Start-Sleep -Milliseconds  500
 }
 
@@ -174,15 +174,15 @@ Start-Sleep -Milliseconds  500
 
 function IPv4conf_Subnetmask1 {
     $Subnetmask = ""
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-        Write-Host "   ╠═══════════════════════════════════════                                        ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Geben Sie die Subnetzmaske ein...                                             ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║     Beispiel: 255.255.255.0                                                   ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                       ║"
+        Write-Host "   ╠═══════════════════════════════════════                                    ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Geben Sie die Subnetzmaske ein...                                         ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║     Beispiel: 255.255.255.0                                               ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
 Start-Sleep -Milliseconds  500
 }
 
@@ -205,13 +205,13 @@ Start-Sleep -Milliseconds  500
 function IPv4conf_Gateway1 {
     $defaultGateway = ""
     Start-Sleep -Milliseconds  500
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-        Write-Host "   ╠═══════════════════════════════════════                                        ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Geben Sie den Standardgateway ein...                                          ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                       ║"
+        Write-Host "   ╠═══════════════════════════════════════                                    ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Geben Sie den Standardgateway ein...                                      ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
 }
 
 function IPv4conf_Gateway2 {
@@ -232,13 +232,13 @@ Start-Sleep -Milliseconds  500
 
 function IPv4conf_DNS1 {
     $defaultDNS = ""
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-        Write-Host "   ╠═══════════════════════════════════════                                        ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Geben Sie den bevorzugten DNS-Server ein...                                   ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                       ║"
+        Write-Host "   ╠═══════════════════════════════════════                                    ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Geben Sie den bevorzugten DNS-Server ein...                               ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
 Start-Sleep -Milliseconds  500
 }
 
@@ -254,13 +254,13 @@ function Set-IPv4conf_Static5 {
     cls
     startbildschirm
         do {
-        Write-Host "      ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-        Write-Host "      ╠═══════════════════════════════════════                                        ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ║  Folgende Netzwerkkonfiguration wird nun eingerichtet:                        ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                    ║"
+        Write-Host "      ╠═══════════════════════════════════════                                 ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ║  Folgende Netzwerkkonfiguration wird nun eingerichtet:                 ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ╚════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         Write-Host ""
         Write-Host "   IP-Adresse:      $IP_Address"
@@ -270,15 +270,15 @@ function Set-IPv4conf_Static5 {
         Write-Host "   DNS-Server:      $defaultDNS"
         Write-Host ""
         Write-Host ""
-        Write-Host "      ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-        Write-Host "      ╠═══════════════════════════════════════                                        ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ║  Soll diese Netzwerkkonfiguration eingerichtet werden?                        ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ║ [ J ] Ja                             ║ [ N ] Nein                             ║"
-        Write-Host "      ║                                      ║                                        ║"
-        Write-Host "      ╚══════════════════════════════════════╩════════════════════════════════════════╝"
+        Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                    ║"
+        Write-Host "      ╠═══════════════════════════════════════                                 ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ║  Soll diese Netzwerkkonfiguration eingerichtet werden?                 ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ║ [ J ] Ja                          ║ [ N ] Nein                         ║"
+        Write-Host "      ║                                   ║                                    ║"
+        Write-Host "      ╚═══════════════════════════════════╩════════════════════════════════════╝"
         Write-Host ""
         $input = Read-Host "Bitte wählen Sie"
 
@@ -290,13 +290,13 @@ function Set-IPv4conf_Static5 {
                     Start-Sleep -Milliseconds 1000
                     cls
                     startbildschirm
-                    Write-Host "      ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                           ║"
-                    Write-Host "      ╠═══════════════════════════════════════                                        ║"
-                    Write-Host "      ║                                                                               ║"
-                    Write-Host "      ║  Die Netzwerkkonfiguration wurde geändert!                                    ║"
-                    Write-Host "      ║                                                                               ║"
-                    Write-Host "      ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                    ║"
+                    Write-Host "      ╠═══════════════════════════════════════                                 ║"
+                    Write-Host "      ║                                                                        ║"
+                    Write-Host "      ║  Die Netzwerkkonfiguration wurde geändert!                             ║"
+                    Write-Host "      ║                                                                        ║"
+                    Write-Host "      ╚════════════════════════════════════════════════════════════════════════╝"
                     Write-Host ""
                     pause
                     wsitool
@@ -310,13 +310,13 @@ function Set-IPv4conf_Static5 {
 function netzwerktool_ipv6 {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Netzwerkkonfiguration ändern                                                  ║"
-        Write-Host "   ╠════════════════════════════════                                               ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Diese Funktion ist derzeit noch in der Entwicklung!                           ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Netzwerkkonfiguration ändern                                              ║"
+        Write-Host "   ╠════════════════════════════════                                           ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Diese Funktion ist derzeit noch in der Entwicklung!                       ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
     Start-Sleep -Milliseconds 3000
     netzwerktool
 }

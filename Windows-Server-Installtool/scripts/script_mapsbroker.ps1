@@ -6,10 +6,10 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-    Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool                                                    ║"
-    Write-Host "║                                                                               ║"
-    Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+    Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+    Write-Host "║ Windows Server Installtool                                                   ║"
+    Write-Host "║                                                                              ║"
+    Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Dienst verwalten: MapsBroker ###
@@ -17,18 +17,19 @@ function Start-MapsBroker-Tool {
     do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                              ║"
-            Write-Host "   ╠════════════════════════════════════════════════════                           ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie den MapsBroker-Dienst automatisch oder manuell aktivieren lassen? ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Automatisch (Standard)         ║ [ 2 ] Manuell                          ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                          ║"
+            Write-Host "   ╠════════════════════════════════════════════════════                       ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie den MapsBroker-Dienst automatisch oder                        ║"
+            Write-Host "   ║ manuell aktivieren lassen?                                                ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 1 ] Automatisch (Standard)       ║ [ 2 ] Manuell                        ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             $input = Read-Host "Bitte wählen Sie"
 
@@ -36,25 +37,25 @@ function Start-MapsBroker-Tool {
                 '1' {Set-Service MapsBroker -StartupType Automatic
                     cls
                     startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                              ║"
-                    Write-Host "   ╠════════════════════════════════════════════════════                           ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Der MapsBroker-Dienst wird nun automatisch gestartet.                         ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                          ║"
+                    Write-Host "   ╠════════════════════════════════════════════════════                       ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ║ Der MapsBroker-Dienst wird nun automatisch gestartet.                     ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
                     Start-Sleep -Milliseconds 3000
                     wsitool}
                 '2' {Set-Service MapsBroker -StartupType Manual
                     cls
                     startbildschirm
-                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-                    Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                              ║"
-                    Write-Host "   ╠════════════════════════════════════════════════════                           ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ║ Der MapsBroker-Dienst wird ab sofort nicht mehr automatisch gestartet.        ║"
-                    Write-Host "   ║                                                                               ║"
-                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+                    Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+                    Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                          ║"
+                    Write-Host "   ╠════════════════════════════════════════════════════                       ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ║ Der MapsBroker-Dienst wird ab sofort nicht mehr automatisch gestartet.    ║"
+                    Write-Host "   ║                                                                           ║"
+                    Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
                     Start-Sleep -Milliseconds 3000
                     wsitool}
                 'x' {wsitool} # Zurück zur Benutzerauswahl #

@@ -6,10 +6,10 @@ cls
 
 ### Startbildschirm ###
     function startbildschirm {
-        Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server-Manager Tool                                                   ║"
-        Write-Host "║                                                                               ║"
-        Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "║ Windows Server-Manager Tool                                                  ║"
+        Write-Host "║                                                                              ║"
+        Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
     }
 
 ### .NET-Framework Version ermitteln ###
@@ -25,18 +25,18 @@ function netframework {
     do {
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework $NET4                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ Möchten Sie .NET Framework installieren oder deinstallieren?                  ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ [ 1 ] Installieren                   ║ [ 2 ] Deinstallieren                   ║"
-            Write-Host "   ║                                      ║                                        ║"
-            Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                    ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ .NET Framework $NET4                                                        ║"
+            Write-Host "   ╠══════════════════════                                                     ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Möchten Sie .NET Framework installieren oder deinstallieren?              ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ [ 1 ] Installieren                 ║ [ 2 ] Deinstallieren                 ║"
+            Write-Host "   ║                                    ║                                      ║"
+            Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
+            Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
             $input = Read-Host "Bitte wählen Sie"
 
@@ -52,25 +52,25 @@ function netframework {
 function netframework-install {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ .NET Framework $NET4                                                            ║"
-        Write-Host "   ╠══════════════════════                                                         ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ .NET Framework $NET4 wird installiert...                                        ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ .NET Framework $NET4                                                        ║"
+        Write-Host "   ╠══════════════════════                                                     ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ .NET Framework $NET4 wird installiert...                                    ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         Start-Sleep -Milliseconds 1500
         Install-WindowsFeature NET-Framework-45-Core -source \\network\share\sxs | Out-Null
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework $NET4                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ .NET Framework $NET4 wurde erfolgreich installiert...                           ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ .NET Framework $NET4                                                        ║"
+            Write-Host "   ╠══════════════════════                                                     ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ .NET Framework $NET4 wurde erfolgreich installiert...                       ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
     netframework
 }
@@ -79,25 +79,25 @@ function netframework-install {
 function netframework-uninstall {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ .NET Framework $NET4                                                            ║"
-        Write-Host "   ╠══════════════════════                                                         ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ .NET Framework $NET4 wird deinstalliert...                                      ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ .NET Framework $NET4                                                        ║"
+        Write-Host "   ╠══════════════════════                                                     ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ .NET Framework $NET4 wird deinstalliert...                                  ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         Start-Sleep -Milliseconds 1500
         Uninstall-WindowsFeature NET-Framework-45-Core | Out-Null
         cls
         startbildschirm
-            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-            Write-Host "   ║ .NET Framework $NET4                                                            ║"
-            Write-Host "   ╠══════════════════════                                                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ║ .NET Framework $NET4 wurde erfolgreich deinstalliert...                         ║"
-            Write-Host "   ║                                                                               ║"
-            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ .NET Framework $NET4                                                        ║"
+            Write-Host "   ╠══════════════════════                                                     ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ .NET Framework $NET4 wurde erfolgreich deinstalliert...                     ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Start-Sleep -Milliseconds 3000
     netframework
 }

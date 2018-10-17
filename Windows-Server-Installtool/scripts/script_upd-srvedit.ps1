@@ -6,10 +6,10 @@ cls
 
 ### Startbildschirm ###
 function startbildschirm {
-        Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Product Key Tool                                                      ║"
-        Write-Host "║                                                                               ║"
-        Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "║ Windows Product Key Tool                                                     ║"
+        Write-Host "║                                                                              ║"
+        Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
 }
 
 ### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
@@ -27,13 +27,13 @@ $ProductKey = ''
 function Get-Edition {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows-Edition aktualisieren                                                 ║"
-        Write-Host "   ╠═════════════════════════════════                                              ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Mögliche Editionen zum aktualisieren werden abgefragt...                      ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows-Edition aktualisieren                                             ║"
+        Write-Host "   ╠═════════════════════════════════                                          ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Mögliche Editionen zum aktualisieren werden abgefragt...                  ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         $UpdateEdition = DISM /online /Get-TargetEditions
 
         edition_auswahl
@@ -42,26 +42,27 @@ function Get-Edition {
 function edition_auswahl {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows-Edition aktualisieren                                                 ║"
-        Write-Host "   ╠═════════════════════════════════                                              ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Wir haben folgende Rückmeldung erhalten:                                      ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows-Edition aktualisieren                                             ║"
+        Write-Host "   ╠═════════════════════════════════                                          ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Wir haben folgende Rückmeldung erhalten:                                  ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         $UpdateEdition
         Write-Host ""
         Start-Sleep -Milliseconds 1500
-        Write-Host "      ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "      ║ Windows-Edition aktualisieren                                                 ║"
-        Write-Host "      ╠═════════════════════════════════                                              ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ║ Welche Edition möchten Sie aktualisieren?                                     ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ║ Geben Sie die gewünschte Edition genau so ein, wie sie oben angegeben wird.   ║"
-        Write-Host "      ║                                                                               ║"
-        Write-Host "      ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "      ║ Windows-Edition aktualisieren                                          ║"
+        Write-Host "      ╠═════════════════════════════════                                       ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ║ Welche Edition möchten Sie aktualisieren?                              ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ║ Geben Sie die gewünschte Edition genau so ein, wie sie                 ║"
+        Write-Host "      ║ oben angegeben wird.                                                   ║"
+        Write-Host "      ║                                                                        ║"
+        Write-Host "      ╚════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         $WunschEdition = Read-Host "      Gewünschte Edition"
 
@@ -72,15 +73,15 @@ function edition_auswahl {
 function edition_productkey {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows-Edition aktualisieren                                                 ║"
-        Write-Host "   ╠═════════════════════════════════                                              ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Bitte geben Sie den gewünschten Product Key im folgenden Format ein:          ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║     XXXXX-XXXXX-XXXXX-XXXXX-XXXXX                                             ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows-Edition aktualisieren                                             ║"
+        Write-Host "   ╠═════════════════════════════════                                          ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Bitte geben Sie den gewünschten Product Key im folgenden Format ein:      ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║     XXXXX-XXXXX-XXXXX-XXXXX-XXXXX                                         ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         $ProductKey = Read-Host "Geben Sie den Product Key für $WunschEdition ein"
 
@@ -91,13 +92,13 @@ function edition_productkey {
 function edition_uebersicht {
     cls
         startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows-Edition aktualisieren                                                 ║"
-        Write-Host "   ╠═════════════════════════════════                                              ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Windows wird aktualisiert...                                                  ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows-Edition aktualisieren                                             ║"
+        Write-Host "   ╠═════════════════════════════════                                          ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Windows wird aktualisiert...                                              ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         Start-Sleep -Milliseconds 1500
         Write-Host "Windows Server-Edition: $WunschEdition"
@@ -111,13 +112,13 @@ function edition_uebersicht {
 function edition_update {
     cls
         startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows-Edition aktualisieren                                                 ║"
-        Write-Host "   ╠═════════════════════════════════                                              ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Windows wird aktualisiert...                                                  ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows-Edition aktualisieren                                             ║"
+        Write-Host "   ╠═════════════════════════════════                                          ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Windows wird aktualisiert...                                              ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Write-Host ""
         Start-Sleep -Milliseconds 1500
         DISM /online /Set-Edition:$WunschEdition /ProductKey:$ProductKey /AcceptEULA
