@@ -100,9 +100,7 @@ function update_installieren {
         Remove-Item "$installpath\scripts\" -Recurse
         Start-Sleep -Milliseconds 3000
         New-Item "$installpath\scripts\" -ItemType directory | Out-Null
-        Move-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\scripts\*" "$installpath
-
-\scripts\" -Force
+        Move-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\scripts\*" "$installpath\scripts\" -Force
         Move-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\*" "$installpath" -Force
 }
 
