@@ -6,29 +6,29 @@ cls
 
 ### Startbildschirm ###
     function startbildschirm {
-        Write-Host "╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server-Manager Tool v2.0.7α                                           ║"
-        Write-Host "║                                                                               ║"
-        Write-Host "╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "║ Windows Server-Manager Tool v2.0.8α                                          ║"
+        Write-Host "║                                                                              ║"
+        Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
     }
 
 ### Menü ###
     function menue {
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Welche Rollen möchten Sie verwalten?                                          ║"
-        Write-Host "   ╠════════════════════════════════════════                                       ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ [ 1 ] Active Directory               ║ [  8 ] .NET Framework 3.5              ║"
-        Write-Host "   ║ [ 2 ] DHCP-Server                    ║ [  9 ] .NET Framework $NET4              ║"
-        Write-Host "   ║ [ 3 ] DNS-Server                     ║ [ 10 ] Windows Server Sicherung        ║"
-        Write-Host "   ║ [ 4 ] Hyper-V                        ║                                        ║"
-        Write-Host "   ║ [ 5 ] Remotedesktopdienste           ║                                        ║"
-        Write-Host "   ║ [ 6 ] Webserver (IIS)                ║                                        ║"
-        Write-Host "   ║ [ 7 ] Windows Server Update Services ║                                        ║"
-        Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════════╣"
-        Write-Host "   ║ [ 0 ] Windows neustarten                                                      ║"
-        Write-Host "   ║ [ X ] Zurück zum WSI-Tool                                                     ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Welche Rollen möchten Sie verwalten?                                      ║"
+        Write-Host "   ╠════════════════════════════════════════                                   ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ [ 1 ] Active Directory               ║ [  8 ] .NET Framework 3.5          ║"
+        Write-Host "   ║ [ 2 ] DHCP-Server                    ║ [  9 ] .NET Framework $NET4          ║"
+        Write-Host "   ║ [ 3 ] DNS-Server                     ║ [ 10 ] Windows Server Sicherung    ║"
+        Write-Host "   ║ [ 4 ] Hyper-V                        ║                                    ║"
+        Write-Host "   ║ [ 5 ] Remotedesktopdienste           ║                                    ║"
+        Write-Host "   ║ [ 6 ] Webserver (IIS)                ║                                    ║"
+        Write-Host "   ║ [ 7 ] Windows Server Update Services ║                                    ║"
+        Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════╣"
+        Write-Host "   ║ [ 0 ] Windows neustarten                                                  ║"
+        Write-Host "   ║ [ X ] Zurück zum WSI-Tool                                                 ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
     }
 
 ### Menüauswahl ###
@@ -126,13 +126,13 @@ $netframework45_fullscriptpath = $installpath + $netframework45_scriptpath
 function entwicklung {
 cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Hinweis                                                                       ║"
-        Write-Host "   ╠═══════════                                                                    ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Diese Funktion ist derzeit noch in der Entwicklung!                           ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hinweis                                                                   ║"
+        Write-Host "   ╠═══════════                                                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Diese Funktion ist derzeit noch in der Entwicklung!                       ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Start-Sleep -Milliseconds 3000
         menueauswahl
 }
@@ -141,13 +141,13 @@ cls
 function wsitool {
     cls
     startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows Server Installtool                                                    ║"
-        Write-Host "   ╠═══════════════════════════════                                                ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ║ Das Programm wird gewechselt...                                               ║"
-        Write-Host "   ║                                                                               ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════════╝"
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Windows Server Installtool                                                ║"
+        Write-Host "   ╠═══════════════════════════════                                            ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Das Programm wird gewechselt...                                           ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         Start-Sleep -Milliseconds 1500
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
