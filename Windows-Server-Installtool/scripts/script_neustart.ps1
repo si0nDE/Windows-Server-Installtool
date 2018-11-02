@@ -40,6 +40,8 @@ function neustarten {
             switch ($input) {
                 'J' {neustart}
                 'N' {wsitool} # Zurück ins Hauptmenü #
+                'x' {wsitool} # Zurück ins Hauptmenü #
+                '0' {wsitool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'N')
 }

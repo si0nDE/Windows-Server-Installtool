@@ -36,7 +36,8 @@ function Start-ProductKeyActivation {
             switch ($input) {
                 '1' {Activate-ProductKey-Online}
                 '2' {Activate-ProductKey-Phone}
-                'x' {wpktool} # Zurück ins Hauptmenü #
+                'x' {wsitool} # Zurück ins Hauptmenü #
+                '0' {wsitool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'x')
 }

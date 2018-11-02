@@ -36,6 +36,7 @@ function Start-WorkgroupDomain-Tool {
                 '1' {Join-Workgroup}
                 '2' {Join-Domain}
                 'x' {wsitool} # Zurück ins Hauptmenü #
+                '0' {wsitool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'x')
 }

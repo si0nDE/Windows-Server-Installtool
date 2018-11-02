@@ -154,6 +154,22 @@ if($installpath -like "*\GitHub\Windows-Server-Installtool\*") {
         Write-Host "    ║                                                                          ║"
         Write-Host "    ╚══════════════════════════════════════════════════════════════════════════╝"
         Start-Sleep -Milliseconds 5000
+        [Environment]::Exit(1)
+} elseif($PSVersionTable.PSVersion -lt "3.0") {
+    cls
+    startbildschirm
+        Start-Sleep -Milliseconds 500
+        Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "    ║ Das Update-Tool benötigt PowerShell-Version 3.0 oder höher.              ║"
+        Write-Host "    ║                                                                          ║"
+        Write-Host "    ║ Bitte aktualisieren Sie Ihre PowerShell-Umgebung oder laden Sie das      ║"
+        Write-Host "    ║ Update manuell von GitHub herunter: https://github.com/si0nDE/           ║"
+        Write-Host "    ║                                                                          ║"
+        Write-Host "    ║     Programm wird beendet...                                             ║"
+        Write-Host "    ║                                                                          ║"
+        Write-Host "    ╚══════════════════════════════════════════════════════════════════════════╝"
+        Start-Sleep -Milliseconds 5000
+        [Environment]::Exit(1)
 } else {
     Start-Sleep -Milliseconds  500
     update_herunterladen

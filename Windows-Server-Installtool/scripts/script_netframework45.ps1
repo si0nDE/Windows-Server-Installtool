@@ -41,9 +41,10 @@ function netframework {
             $input = Read-Host "Bitte wählen Sie"
 
             switch ($input) {
-                '1' {netframework46-install}
-                '2' {netframework46-uninstall}
-                'x' {wsmtool} # Zurück ins Hauptmenü #
+                '1' {netframework-install}
+                '2' {netframework-uninstall}
+                'x' {wsitool} # Zurück ins Hauptmenü #
+                '0' {wsitool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'x')
 }

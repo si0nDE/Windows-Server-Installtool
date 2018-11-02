@@ -60,6 +60,7 @@ function Start-RemoteDesktop-Tool {
                     Start-Sleep -Milliseconds 3000
                     wsitool}
                 'x' {wsitool} # Zurück ins Hauptmenü #
+                '0' {wsitool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'x')
 }

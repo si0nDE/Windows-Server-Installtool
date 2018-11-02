@@ -7,7 +7,7 @@ cls
 ### Startbildschirm ###
 function startbildschirm {
     Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool v1.8.5.1                                          ║"
+    Write-Host "║ Windows Server Installtool v1.8.6                                            ║"
     Write-Host "║                                                                              ║"
     Write-Host "║                                                       (c) www.simonfieber.it ║"
     Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"

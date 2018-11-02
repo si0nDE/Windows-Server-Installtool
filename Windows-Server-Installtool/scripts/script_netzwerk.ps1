@@ -34,7 +34,7 @@ function netzwerktool {
             Write-Host "   ║ [ 4 ] IPv4                         ║ [ 6 ] IPv6                           ║"
             Write-Host "   ║                                    ║                                      ║"
             Write-Host "   ╠════════════════════════════════════╩══════════════════════════════════════╣"
-            Write-Host "   ║ [ 0 ] Aktuelle Netzwerkkonfiguration anzeigen                             ║"
+            Write-Host "   ║ [ 1 ] Aktuelle Netzwerkkonfiguration anzeigen                             ║"
             Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
             Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
             Write-Host ""
@@ -42,10 +42,11 @@ function netzwerktool {
             $input = Read-Host "Bitte wählen Sie"
 
             switch ($input) {
-                '0' {Show-NetConf}
+                '1' {Show-NetConf}
                 '4' {IPv4conf_ifIndex}
                 '6' {netzwerktool_ipv6}
                 'x' {wsitool} # Zurück ins Hauptmenü #
+                '0' {wsitool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'x')
 }

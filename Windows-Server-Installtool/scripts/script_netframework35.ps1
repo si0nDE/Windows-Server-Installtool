@@ -35,7 +35,8 @@ function netframework {
             switch ($input) {
                 '1' {netframework-install}
                 '2' {netframework-uninstall}
-                'x' {wsmtool} # Zurück ins Hauptmenü #
+                'x' {wsitool} # Zurück ins Hauptmenü #
+                '0' {wsitool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'x')
 }
