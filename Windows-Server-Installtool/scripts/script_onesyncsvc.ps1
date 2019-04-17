@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -15,7 +15,7 @@ function startbildschirm {
 ### Dienst verwalten: OneSync-Synchronisierungshost ###
 function Start-OneSyncSvc-Tool {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ OneSync-Synchronisierungshost (OneSyncSvc)                                ║"
@@ -35,7 +35,7 @@ function Start-OneSyncSvc-Tool {
 
             switch ($input) {
                 '1' {Set-Service -Name "OneSyncSvc" -StartupType Automatic
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ OneSync-Synchronisierungshost (OneSyncSvc)                                ║"
@@ -47,7 +47,7 @@ function Start-OneSyncSvc-Tool {
                     Start-Sleep -Milliseconds 3000
                     wsitool}
                 '2' {Set-Service -Name "OneSyncSvc" -StartupType Manual
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ OneSync-Synchronisierungshost (OneSyncSvc)                                ║"

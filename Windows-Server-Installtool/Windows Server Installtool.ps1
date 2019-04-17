@@ -2,12 +2,12 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
     Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool v1.8.6                                            ║"
+    Write-Host "║ Windows Server Installtool v1.8.7                                            ║"
     Write-Host "║                                                                              ║"
     Write-Host "║                                                       (c) www.simonfieber.it ║"
     Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"

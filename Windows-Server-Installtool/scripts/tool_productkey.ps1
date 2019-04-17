@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -32,7 +32,7 @@ function menue {
 ### Menüauswahl ###
 function menueauswahl {
     do {
-        cls
+        Clear-Host
         startbildschirm
         menue
             Write-Host ""
@@ -52,7 +52,7 @@ function menueauswahl {
 
 ### Product Key installieren ###
 function productkey_eingeben {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Product Key eingeben                                                      ║"
@@ -66,7 +66,7 @@ function productkey_eingeben {
             Write-Host ""
             $ProductKey = Read-Host "Product Key"
 
-            cls
+            Clear-Host
                 startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Product Key wird installiert...                                           ║"
@@ -79,7 +79,7 @@ function productkey_eingeben {
 }
 
 function productkey_aktivieren {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -105,7 +105,7 @@ function productkey_aktivieren {
 ### Lizenzinformationen abrufen - Menü ###
 function lizenzinfo_abrufen {
         do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Lizenzinformationen abrufen                                               ║"
@@ -133,7 +133,7 @@ function lizenzinfo_abrufen {
 
 ### einfache Lizenzinformationen abrufen ###
 function lizenzinfo_einfach {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Lizenzinformationen abrufen                                               ║"
@@ -154,7 +154,7 @@ function lizenzinfo_einfach {
 
 ### erweiterte Lizenzinformationen abrufen ###
 function lizenzinfo_erweitert {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Lizenzinformationen abrufen                                               ║"
@@ -175,7 +175,7 @@ function lizenzinfo_erweitert {
 
 ### Aktuell installierte Edition abfragen ###
 function installierte_edition {
-    cls
+    Clear-Host
     startbildschirm
     $Edition = ''
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
@@ -186,7 +186,7 @@ function installierte_edition {
         Write-Host "   ║                                                                           ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
         $Edition = DISM /online /Get-CurrentEdition
-            cls
+            Clear-Host
             startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Installierte Edition abfragen                                             ║"
@@ -203,7 +203,7 @@ function installierte_edition {
 
 ### Windows Server-Editionen aktualisieren ###
 function upd-srvedit {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -248,7 +248,7 @@ $productkey_aktivierenFULLPATH = $installpath + $productkey_aktivierenPATH
 
 ### Zurück zum Windows Server Installtool ###
 function wsitool {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows Server Installtool                                                ║"
@@ -282,7 +282,7 @@ function wsitool {
 
 ### Windows neustarten ###
 function neustarten {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `

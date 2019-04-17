@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -15,7 +15,7 @@ function startbildschirm {
 ### Dienst verwalten: MapsBroker ###
 function Start-MapsBroker-Tool {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                          ║"
@@ -35,7 +35,7 @@ function Start-MapsBroker-Tool {
 
             switch ($input) {
                 '1' {Set-Service MapsBroker -StartupType Automatic
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                          ║"
@@ -47,7 +47,7 @@ function Start-MapsBroker-Tool {
                     Start-Sleep -Milliseconds 3000
                     wsitool}
                 '2' {Set-Service MapsBroker -StartupType Manual
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Manager für heruntergeladene Karten (MapsBroker)                          ║"

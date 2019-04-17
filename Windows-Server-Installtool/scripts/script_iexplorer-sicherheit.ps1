@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -15,7 +15,7 @@ function startbildschirm {
 ### Verstärkte Sicherheitskonfiguration für IE - Menü ###
 function Start-IExplorer-Sicherheit {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE                                ║"
@@ -45,7 +45,7 @@ function Start-IExplorer-Sicherheit {
 ### Verstärkte Sicherheitskonfiguration für IE - Administratoren###
 function iexplorer_adminsicherheit {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Administratoren              ║"
@@ -65,7 +65,7 @@ function iexplorer_adminsicherheit {
 
             switch ($input) {
                 '1' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "1"
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Administratoren              ║"
@@ -77,7 +77,7 @@ function iexplorer_adminsicherheit {
                     Start-Sleep -Milliseconds 3000
                     Start-IExplorer-Sicherheit}
                 '2' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "0"
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Administratoren              ║"
@@ -97,7 +97,7 @@ function iexplorer_adminsicherheit {
 ### Verstärkte Sicherheitskonfiguration für IE - Benutzer###
 function iexplorer_usersicherheit {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Benutzer                     ║"
@@ -117,7 +117,7 @@ function iexplorer_usersicherheit {
 
             switch ($input) {
                 '1' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "1"
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Benutzer                     ║"
@@ -129,7 +129,7 @@ function iexplorer_usersicherheit {
                     Start-Sleep -Milliseconds 3000
                     Start-IExplorer-Sicherheit}
                 '2' {Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}" -Name "IsInstalled" -Value "0"
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Verstärkte Sicherheitskonfiguration für IE - Benutzer                     ║"

@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
     function startbildschirm {
@@ -15,7 +15,7 @@ cls
 ### Menü ###
 function netframework {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ .NET Framework 3.5                                                        ║"
@@ -43,7 +43,7 @@ function netframework {
 
 ### .NET Framework 3.5 installieren ###
 function netframework-install {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ .NET Framework 3.5                                                        ║"
@@ -55,7 +55,7 @@ function netframework-install {
         Write-Host ""
         Start-Sleep -Milliseconds 1500
         Install-WindowsFeature Net-Framework-Core -source \\network\share\sxs | Out-Null
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ .NET Framework 3.5                                                        ║"
@@ -70,7 +70,7 @@ function netframework-install {
 
 ### .NET Framework 3.5 deinstallieren ###
 function netframework-uninstall {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ .NET Framework 3.5                                                        ║"
@@ -82,7 +82,7 @@ function netframework-uninstall {
         Write-Host ""
         Start-Sleep -Milliseconds 1500
         Uninstall-WindowsFeature Net-Framework-Core | Out-Null
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ .NET Framework 3.5                                                        ║"

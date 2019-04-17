@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 ### Fehlermeldungen unterdrücken ###
 ### Mögliche Fehlermeldungen: Dateien oder Ordner können nicht gelöscht werden, da diese nicht existieren. ###
 $ErrorActionPreference = "SilentlyContinue"
@@ -38,7 +38,7 @@ function Unzip
 $source = "https://github.com/si0nDE/Windows-Server-Installtool/archive/master.zip"
 
 function update_herunterladen {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "    ║ Update wird heruntergeladen...                                           ║"
@@ -65,7 +65,7 @@ function update_herunterladen {
 }
 
 function update_entpacken {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "    ║ Update wird entpackt...                                                  ║"
@@ -90,7 +90,7 @@ function update_entpacken {
 }
 
 function update_installieren {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "    ║ Update wird installiert...                                               ║"
@@ -105,7 +105,7 @@ function update_installieren {
 }
 
 function update_aufraeumen {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "    ║ Aufräumen...                                                             ║"
@@ -122,7 +122,7 @@ function update_aufraeumen {
 }
 
 function update_fertigstellen {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "    ║ Update fertiggestellt!                                                   ║"
@@ -144,7 +144,7 @@ function update_fehlgeschlagen {
 }
 
 if($installpath -like "*\GitHub\Windows-Server-Installtool\*") {
-    cls
+    Clear-Host
     startbildschirm
         Start-Sleep -Milliseconds 500
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
@@ -156,7 +156,7 @@ if($installpath -like "*\GitHub\Windows-Server-Installtool\*") {
         Start-Sleep -Milliseconds 5000
         [Environment]::Exit(1)
 } elseif($PSVersionTable.PSVersion -lt "3.0") {
-    cls
+    Clear-Host
     startbildschirm
         Start-Sleep -Milliseconds 500
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"

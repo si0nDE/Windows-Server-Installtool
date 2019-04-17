@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -25,7 +25,7 @@ $WunschEdition = ''
 $ProductKey = ''
 
 function Get-Edition {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows-Edition aktualisieren                                             ║"
@@ -40,7 +40,7 @@ function Get-Edition {
 }
 
 function edition_auswahl {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows-Edition aktualisieren                                             ║"
@@ -71,7 +71,7 @@ function edition_auswahl {
 }
 
 function edition_productkey {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows-Edition aktualisieren                                             ║"
@@ -90,7 +90,7 @@ function edition_productkey {
 }
 
 function edition_uebersicht {
-    cls
+    Clear-Host
         startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows-Edition aktualisieren                                             ║"
@@ -110,7 +110,7 @@ function edition_uebersicht {
 }
 
 function edition_update {
-    cls
+    Clear-Host
         startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows-Edition aktualisieren                                             ║"

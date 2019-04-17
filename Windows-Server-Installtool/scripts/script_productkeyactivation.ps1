@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -15,7 +15,7 @@ function startbildschirm {
 ### Product Key aktivieren - Menü ###
 function Start-ProductKeyActivation {
         do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Product Key aktivieren                                                    ║"
@@ -44,7 +44,7 @@ function Start-ProductKeyActivation {
 
 ### Product Key online aktivieren ###
 function Activate-ProductKey-Online {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Product Key online aktivieren                                             ║"
@@ -62,7 +62,7 @@ function Activate-ProductKey-Online {
 
 ### Product Key telefonisch aktivieren
 function Activate-ProductKey-Phone {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Product Key telefonisch aktivieren                                        ║"

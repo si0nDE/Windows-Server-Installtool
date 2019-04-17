@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -23,7 +23,7 @@ $installpath = Get-ScriptDirectory
 ### Netzwerkkonfiguration ändern - Menü ###
 function netzwerktool {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Netzwerkkonfiguration ändern                                              ║"
@@ -53,7 +53,7 @@ function netzwerktool {
 
 ### Netzwerkkonfiguration anzeigen ###
 function Show-NetConf {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Aktuelle Netzwerkkonfiguration                                            ║"
@@ -70,7 +70,7 @@ function Show-NetConf {
 
 ### Netzwerkkonfiguration (IPv4) ändern ###
 function IPv4conf_ifIndex {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                       ║"
@@ -82,7 +82,7 @@ function IPv4conf_ifIndex {
         Write-Host "   ║                                                                           ║"
         Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
 
-        Get-NetAdapter | ft Name, ifIndex, Status, InterfaceDescription
+        Get-NetAdapter | Format-Table Name, ifIndex, Status, InterfaceDescription
 
         $InterfaceIndex = Read-Host "InterfaceIndex"
         Start-Sleep -Milliseconds  500
@@ -91,7 +91,7 @@ function IPv4conf_ifIndex {
 
 function IPv4conf_Menu {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Netzwerkkonfiguration (IPv4) ändern                                       ║"
@@ -122,7 +122,7 @@ function Set-IPv4conf_DHCP {
     Set-NetIPInterface -InterfaceIndex $InterfaceIndex -DHCP Enabled
     Start-Sleep -Milliseconds 1500
 
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
         Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                    ║"
@@ -138,7 +138,7 @@ function Set-IPv4conf_DHCP {
 
 ### IP-Adresse ###
 function Set-IPv4conf_Static1 {
-    cls
+    Clear-Host
     startbildschirm
     IPv4conf_IP-Address1
     IPv4conf_IP-Address2
@@ -166,7 +166,7 @@ function IPv4conf_IP-Address2 {
 
 ### Subnetzmaske ###
 function Set-IPv4conf_Static2 {
-    cls
+    Clear-Host
     startbildschirm
     IPv4conf_Subnetmask1
     IPv4conf_Subnetmask2
@@ -196,7 +196,7 @@ function IPv4conf_Subnetmask2 {
 
 ### Standardgateway ###
 function Set-IPv4conf_Static3 {
-    cls
+    Clear-Host
     startbildschirm
     IPv4conf_Gateway1
     IPv4conf_Gateway2
@@ -224,7 +224,7 @@ function IPv4conf_Gateway2 {
 
 ### DNS-Server ###
 function Set-IPv4conf_Static4 {
-    cls
+    Clear-Host
     startbildschirm
     IPv4conf_DNS1
     IPv4conf_DNS2
@@ -252,7 +252,7 @@ function IPv4conf_DNS2 {
 
 function Set-IPv4conf_Static5 {
     Start-Sleep -Milliseconds  500
-    cls
+    Clear-Host
     startbildschirm
         do {
         Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
@@ -289,7 +289,7 @@ function Set-IPv4conf_Static5 {
                     Start-Sleep -Milliseconds 500
                     Set-DnsClientServerAddress -InterfaceIndex $InterfaceIndex -ServerAddresses $defaultDNS | Out-Null
                     Start-Sleep -Milliseconds 1000
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "      ╔════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "      ║ Netzwerkkonfiguration (IPv4) ändern                                    ║"
@@ -309,7 +309,7 @@ function Set-IPv4conf_Static5 {
 
 ### Netzwerkkonfiguration (IPv6) ändern ###
 function netzwerktool_ipv6 {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Netzwerkkonfiguration ändern                                              ║"

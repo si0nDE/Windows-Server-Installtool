@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -14,7 +14,7 @@ function startbildschirm {
 
 function Start-RemoteDesktop-Tool {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Remotedesktop einrichten                                                  ║"
@@ -35,7 +35,7 @@ function Start-RemoteDesktop-Tool {
             switch ($input) {
                 '1' {Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value "0"
                      Enable-NetFirewallRule -DisplayGroup “Remotedesktop”
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Remotedesktop einrichten                                                  ║"
@@ -48,7 +48,7 @@ function Start-RemoteDesktop-Tool {
                     wsitool}
                 '2' {Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value "1"
                      Disable-NetFirewallRule -DisplayGroup “Remotedesktop”
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Remotedesktop einrichten                                                  ║"

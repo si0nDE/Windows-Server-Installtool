@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -15,7 +15,7 @@ function startbildschirm {
 ### Arbeitsgruppe/Domäne beitreten - Menü ###
 function Start-WorkgroupDomain-Tool {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Arbeitsgruppe/Domäne beitreten                                            ║"
@@ -43,7 +43,7 @@ function Start-WorkgroupDomain-Tool {
 
 ### Arbeitsgruppe beitreten ###
 function Join-Workgroup {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Arbeitsgruppe beitreten                                                   ║"
@@ -58,7 +58,7 @@ function Join-Workgroup {
         $error.Clear()
         try{$computerinfo.JoinDomainOrWorkgroup("$neuearbeitsgruppe") | Out-Null}
         catch{
-            cls
+            Clear-Host
             startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Arbeitsgruppe beitreten                                                   ║"
@@ -72,7 +72,7 @@ function Join-Workgroup {
             Start-Sleep -Milliseconds 3000
         }
         if (!$error) {
-            cls
+            Clear-Host
             startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Arbeitsgruppe beitreten                                                   ║"
@@ -90,7 +90,7 @@ function Join-Workgroup {
 
 ### Domäne beitreten ###
 function Join-Domain {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Domäne beitreten                                                          ║"
@@ -106,7 +106,7 @@ function Join-Domain {
         $error.Clear()
         try{Add-Computer -DomainName $neuedomaene -Credential $neuedomaene\$benutzername | Out-Null}
         catch{
-            cls
+            Clear-Host
             startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Domäne beitreten                                                          ║"
@@ -120,7 +120,7 @@ function Join-Domain {
             Start-Sleep -Milliseconds 3000
         }
         if (!$error) {
-            cls
+            Clear-Host
             startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Domäne beitreten                                                          ║"

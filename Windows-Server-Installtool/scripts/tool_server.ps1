@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -33,7 +33,7 @@ function menue {
 ### Menüauswahl ###
 function menueauswahl {
     do {
-        cls
+        Clear-Host
         startbildschirm
         menue
             Write-Host ""
@@ -62,7 +62,7 @@ $computerinfo = Get-WmiObject -class win32_computersystem
 ### Hostnamen ändern ###
 function hostnametool {
     $hostname = ''
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Hostnamen ändern                                                          ║"
@@ -76,7 +76,7 @@ function hostnametool {
         Write-Host ""
         Start-Sleep -Milliseconds 1500
         $computerinfo.Rename($hostname) | Out-Null
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Hostnamen ändern                                                          ║"
@@ -93,7 +93,7 @@ function hostnametool {
 
 ### Netzwerkkonfiguration ändern - Menü ###
 function netzwerktool {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -120,7 +120,7 @@ function netzwerktool {
 
 ### Arbeitsgruppe/Domäne beitreten - Menü ###
 function workgroupdomaintool {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -146,7 +146,7 @@ function workgroupdomaintool {
 
 ### Verstärkte Sicherheitskonfiguration für IE - Menü ###
 function iexplorer_sicherheit {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -172,7 +172,7 @@ function iexplorer_sicherheit {
 
 ### Cortana & Bing-Suche aktivieren/deaktivieren ###
 function Start-Cortana-Tool {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -198,7 +198,7 @@ function Start-Cortana-Tool {
 
 ### Dienst verwalten: MapsBroker ###
 function Start-MapsBroker-Tool {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -223,7 +223,7 @@ function Start-MapsBroker-Tool {
 
 ### Dienst verwalten: OneSync-Synchronisierungshost ###
 function Start-OneSyncSvc-Tool {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -248,7 +248,7 @@ function Start-OneSyncSvc-Tool {
 
 ### Remotedesktop einrichten ###
 function remotedesktoptool {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -289,7 +289,7 @@ $netzwerk_fullscriptpath = $installpath + $netzwerk_scriptpath
 
 ### Windows Server Installtool starten ###
 function wpktool {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows Product Key Tool                                                  ║"
@@ -323,7 +323,7 @@ function wpktool {
 
 ### Windows Server Installtool starten ###
 function wsmtool {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows Server-Manager Tool                                               ║"
@@ -357,7 +357,7 @@ function wsmtool {
 
 ### Windows neustarten ###
 function neustarten {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `

@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -23,7 +23,7 @@ $installpath = Get-ScriptDirectory
 ### Windows neustarten - Menü ###
 function neustarten {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Windows neustarten                                                        ║"
@@ -71,7 +71,7 @@ function wsitool {
 
 ### Windows neustarten ###
 function neustart {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows neustarten                                                        ║"

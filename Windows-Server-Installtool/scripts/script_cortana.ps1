@@ -2,7 +2,7 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
 function startbildschirm {
@@ -15,7 +15,7 @@ function startbildschirm {
 ### Cortana & Bing-Suche aktivieren/deaktivieren ###
 function Start-Cortana-Tool {
     do {
-        cls
+        Clear-Host
         startbildschirm
             Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
             Write-Host "   ║ Cortana & Bing-Suche                                                      ║"
@@ -36,7 +36,7 @@ function Start-Cortana-Tool {
                 '1' {Remove-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\Windows Search" -Name AllowCortana
                      Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name BingSearchEnabled
                      Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name CortanaConsent
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Cortana & Bing-Suche                                                      ║"
@@ -55,7 +55,7 @@ function Start-Cortana-Tool {
                 '2' {New-ItemProperty -Type DWord -Path "HKCU:\Software\Policies\Microsoft\Windows\Windows Search" -Name AllowCortana -value "0"
                      New-ItemProperty -Type DWord -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name BingSearchEnabled -value "0"
                      New-ItemProperty -Type DWord -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name CortanaConsent -value "0"
-                    cls
+                    Clear-Host
                     startbildschirm
                     Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
                     Write-Host "   ║ Cortana & Bing-Suche                                                      ║"
