@@ -7,7 +7,7 @@ Clear-Host
 ### Startbildschirm ###
 function startbildschirm {
     Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
-    Write-Host "║ Windows Server Installtool v1.8.7                                            ║"
+    Write-Host "║ Windows Server Installtool v1.8.8                                            ║"
     Write-Host "║                                                                              ║"
     Write-Host "║                                                       (c) www.simonfieber.it ║"
     Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"

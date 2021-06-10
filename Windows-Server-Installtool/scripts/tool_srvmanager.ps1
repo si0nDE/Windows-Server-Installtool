@@ -7,7 +7,7 @@ cls
 ### Startbildschirm ###
     function startbildschirm {
         Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server-Manager Tool v2.0.8α                                          ║"
+        Write-Host "║ Windows Server-Manager Tool v2.0.9α                                          ║"
         Write-Host "║                                                                              ║"
         Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
     }
@@ -45,7 +45,7 @@ function menueauswahl {
                 '1' {entwicklung}
                 '2' {entwicklung}
                 '3' {entwicklung}
-                '4' {entwicklung}
+                '4' {hyperv}
                 '5' {entwicklung}
                 '6' {entwicklung}
                 '7' {entwicklung}
@@ -55,6 +55,31 @@ function menueauswahl {
                 'x' {wsitool}
             } pause }
         until ($input -eq 'x')
+}
+
+### Hyper-V ###
+function hyperv {
+    cls
+        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+        if(!$princ.IsInRole( `
+            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+            {
+                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                $script = $hyperv_fullscriptpath
+                $prm = $script
+                    foreach($a in $args) {
+                        $prm += ' ' + $a
+                    }
+                $psi.Arguments = $prm
+                $psi.Verb = "runas"
+                [System.Diagnostics.Process]::Start($psi) | Out-Null
+                return;
+            }
+    ### Falls Adminrechte nicht erfordert werden können, ###
+    ### soll das Script trotzdem ausgeführt werden.      ###
+    & $hyperv_fullscriptpath
 }
 
 ### .NET Framework 3.5 ###
@@ -116,10 +141,12 @@ function Get-ScriptDirectory {
 $installpath = Get-ScriptDirectory
 $scriptpath = "\tool_server.ps1"
 $restart_scriptpath = "\script_neustart.ps1"
+$hyperv_scriptpath = "\script_hyperv.ps1"
 $netframework35_scriptpath = "\script_netframework35.ps1"
 $netframework45_scriptpath = "\script_netframework45.ps1"
 $fullscriptpath = $installpath + $scriptpath
 $restart_fullscriptpath = $installpath + $restart_scriptpath
+$hyperv_fullscriptpath = $installpath + $hyperv_scriptpath
 $netframework35_fullscriptpath = $installpath + $netframework35_scriptpath
 $netframework45_fullscriptpath = $installpath + $netframework45_scriptpath
 
