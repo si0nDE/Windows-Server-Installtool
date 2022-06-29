@@ -18,10 +18,11 @@ function menue {
         Write-Host "   ║ Hauptmenü                                                                 ║"
         Write-Host "   ╠═════════════                                                              ║"
         Write-Host "   ║                                                                           ║"
-        Write-Host "   ║ [ 1 ] Hostnamen ändern              ║ [ 5 ] Cortana & Bing-Suche verwalten║"
-        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern  ║ [ 6 ] Dienst verwalten: MapsBroker  ║"
-        Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten║ [ 7 ] Dienst verwalten: OneSyncSvc  ║"
-        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration   ║ [ 8 ] Remotedesktop einrichten      ║"
+        Write-Host "   ║ [ 1 ] Hostnamen ändern              ║ [ 6 ] Dienst verwalten: MapsBroker  ║"
+        Write-Host "   ║ [ 2 ] Netzwerkkonfiguration ändern  ║ [ 7 ] Dienst verwalten: OneSyncSvc  ║"
+        Write-Host "   ║ [ 3 ] Arbeitsgruppe/Domäne beitreten║ [ 8 ] Remotedesktop einrichten      ║"
+        Write-Host "   ║ [ 4 ] IE Sicherheitskonfiguration   ║                                     ║"
+        Write-Host "   ║ [ 5 ] Cortana & Bing-Suche verwalten║ [ 9 ] Systemrechte anfordern        ║"
         Write-Host "   ╠═════════════════════════════════════╩═════════════════════════════════════╣"
         Write-Host "   ║                                                                           ║"
         Write-Host "   ║ [ 0 ] Windows neustarten            ║ [ S ] Serverrollen und -features    ║"
@@ -49,6 +50,7 @@ function menueauswahl {
                 '6' {Start-MapsBroker-Tool}
                 '7' {Start-OneSyncSvc-Tool}
                 '8' {remotedesktoptool}
+                '9' {Win-SystemUser}
                 'p' {wpktool}
                 's' {wsmtool}
                 'x' {[Environment]::Exit(1)}
@@ -58,6 +60,7 @@ function menueauswahl {
 
 ### Computerinfo abrufen ###
 $computerinfo = Get-WmiObject -class win32_computersystem
+
 
 ### Hostnamen ändern ###
 function hostnametool {
@@ -91,6 +94,7 @@ function hostnametool {
     menueauswahl
 }
 
+
 ### Netzwerkkonfiguration ändern - Menü ###
 function netzwerktool {
     Clear-Host
@@ -115,7 +119,6 @@ function netzwerktool {
     ### soll das Script trotzdem ausgeführt werden.      ###
     & $netzwerk_fullscriptpath
 }
-
 
 
 ### Arbeitsgruppe/Domäne beitreten - Menü ###
@@ -221,6 +224,7 @@ function Start-MapsBroker-Tool {
     & "$installpath\script_mapsbroker.ps1"
 }
 
+
 ### Dienst verwalten: OneSync-Synchronisierungshost ###
 function Start-OneSyncSvc-Tool {
     Clear-Host
@@ -245,6 +249,7 @@ function Start-OneSyncSvc-Tool {
     ### soll das Script trotzdem ausgeführt werden.      ###
     & "$installpath\script_onesyncsvc.ps1"
 }
+
 
 ### Remotedesktop einrichten ###
 function remotedesktoptool {
@@ -271,34 +276,11 @@ function remotedesktoptool {
     & "$installpath\script_remotedesktop.ps1"
 }
 
-### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
-function Get-ScriptDirectory {
-    $Invocation = (Get-Variable MyInvocation -Scope 1).Value
-    Split-Path $Invocation.MyCommand.Path
-}
- 
-$installpath = Get-ScriptDirectory
-$wsm_scriptpath = "\tool_srvmanager.ps1"
-$wpk_scriptpath = "\tool_productkey.ps1"
-$restart_scriptpath = "\script_neustart.ps1"
-$netzwerk_scriptpath = "\script_netzwerk.ps1"
-$wsm_fullscriptpath = $installpath + $wsm_scriptpath
-$wpk_fullscriptpath = $installpath + $wpk_scriptpath
-$restart_fullscriptpath = $installpath + $restart_scriptpath
-$netzwerk_fullscriptpath = $installpath + $netzwerk_scriptpath
 
-### Windows Server Installtool starten ###
-function wpktool {
+### Win-SystemUser ###
+function Win-SystemUser {
+    if (Test-Path "$installpath\script_win-systemuser.ps1") {
     Clear-Host
-    startbildschirm
-        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Windows Product Key Tool                                                  ║"
-        Write-Host "   ╠════════════════════════════                                               ║"
-        Write-Host "   ║                                                                           ║"
-        Write-Host "   ║ Das Programm wird gewechselt...                                           ║"
-        Write-Host "   ║                                                                           ║"
-        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
-        Start-Sleep -Milliseconds 1500
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -306,7 +288,7 @@ function wpktool {
             {
                 $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
                 $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
-                $script = $wpk_fullscriptpath
+                $script = "$installpath\script_win-systemuser.ps1"
                 $prm = $script
                     foreach($a in $args) {
                         $prm += ' ' + $a
@@ -318,8 +300,93 @@ function wpktool {
             }
     ### Falls Adminrechte nicht erfordert werden können, ###
     ### soll das Script trotzdem ausgeführt werden.      ###
-    & $wpk_fullscriptpath
+    & "$installpath\script_win-systemuser.ps1"
+    } else {
+        Clear-Host
+        startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hinweis                                                                   ║"
+        Write-Host "   ╠═══════════                                                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Das Tool zum Anfordern von Systemrechten ist nicht installiert.           ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║    Bitte führen Sie das Update-Script aus!                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
+        Start-Sleep -Milliseconds 3000
+        menueauswahl
+    }
 }
+
+
+### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
+function Get-ScriptDirectory {
+    $Invocation = (Get-Variable MyInvocation -Scope 1).Value
+    Split-Path $Invocation.MyCommand.Path
+}
+ 
+
+$installpath = Get-ScriptDirectory
+$wsm_scriptpath = "\tool_srvmanager.ps1"
+$wpk_scriptpath = "\tool_productkey.ps1"
+$restart_scriptpath = "\script_neustart.ps1"
+$netzwerk_scriptpath = "\script_netzwerk.ps1"
+$wsm_fullscriptpath = $installpath + $wsm_scriptpath
+$wpk_fullscriptpath = $installpath + $wpk_scriptpath
+$restart_fullscriptpath = $installpath + $restart_scriptpath
+$netzwerk_fullscriptpath = $installpath + $netzwerk_scriptpath
+
+
+### Windows Server Installtool starten ###
+function wpktool {
+    if (Test-Path $wpk_fullscriptpath) {
+        Clear-Host
+        startbildschirm
+            Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+            Write-Host "   ║ Windows Product Key Tool                                                  ║"
+            Write-Host "   ╠════════════════════════════                                               ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ║ Das Programm wird gewechselt...                                           ║"
+            Write-Host "   ║                                                                           ║"
+            Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
+            Start-Sleep -Milliseconds 1500
+            $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+            $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
+            if(!$princ.IsInRole( `
+                [System.Security.Principal.WindowsBuiltInRole]::Administrator))
+                {
+                    $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
+                    $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
+                    $script = $wpk_fullscriptpath
+                    $prm = $script
+                        foreach($a in $args) {
+                            $prm += ' ' + $a
+                        }
+                    $psi.Arguments = $prm
+                    $psi.Verb = "runas"
+                    [System.Diagnostics.Process]::Start($psi) | Out-Null
+                    return;
+                }
+        ### Falls Adminrechte nicht erfordert werden können, ###
+        ### soll das Script trotzdem ausgeführt werden.      ###
+        & $wpk_fullscriptpath
+    } else {
+        Clear-Host
+        startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hinweis                                                                   ║"
+        Write-Host "   ╠═══════════                                                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Das Windows Product Key Tool ist nicht installiert.                       ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║    Bitte führen Sie das Update-Script aus!                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
+        Start-Sleep -Milliseconds 3000
+        menueauswahl
+    }
+}
+
 
 ### Windows Server Installtool starten ###
 function wsmtool {
@@ -355,6 +422,7 @@ function wsmtool {
     & $wsm_fullscriptpath
 }
 
+
 ### Windows neustarten ###
 function neustarten {
     Clear-Host
@@ -379,6 +447,7 @@ function neustarten {
     ### soll das Script trotzdem ausgeführt werden.      ###
     & $restart_fullscriptpath
 }
+
 
 ### Start ###
 menueauswahl

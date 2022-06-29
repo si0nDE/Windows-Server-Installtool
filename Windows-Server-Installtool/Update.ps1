@@ -35,22 +35,78 @@ function Unzip
 }
 
 ### Updateroutine ###
-$source = "https://github.com/si0nDE/Windows-Server-Installtool/archive/master.zip"
+$wsi_source  = "https://github.com/si0nDE/Windows-Server-Installtool/archive/master.zip"
+$wpkt_source = "https://github.com/si0nDE/Windows-Product-Key-Tool/archive/master.zip"
+$btsu_source = "https://github.com/si0nDE/Win-SystemUser/archive/master.zip"
 
-function update_herunterladen {
+function wsi_herunterladen {
     Clear-Host
     startbildschirm
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "    ║ Update wird heruntergeladen...                                           ║"
+        Write-Host "    ║ Aktuellste Version (Windows Server Installtool) wird heruntergeladen...  ║"
         Write-Host "    ║                                                                          ║"
         Write-Host "    ╚══════════════════════════════════════════════════════════════════════════╝"
         $error.Clear()
         try{[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-            Invoke-WebRequest -Uri $source -OutFile "$installpath\update.zip"}
+            Invoke-WebRequest -Uri $wsi_source -OutFile "$installpath\wsi.zip"}
         catch{
             Start-Sleep -Milliseconds 1500
             Write-Host "        ╔══════════════════════════════════════════════════════════════════════╗"
-            Write-Host "        ║ Das Update konnte nicht heruntergeladen werden.                      ║"
+            Write-Host "        ║ Das Windows Server Installtool konnte nicht heruntergeladen werden.  ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ║     Bitte überprüfen Sie Ihre Internetverbindung und                 ║"
+            Write-Host "        ║     versuchen Sie es erneut!                                         ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ║     Sollten Sie kein Problem feststellen können, prüfen Sie bitte    ║"
+            Write-Host "        ║     auf GitHub, ob die Updateroutine ein Update erhalten hat.        ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ╚══════════════════════════════════════════════════════════════════════╝"
+            Start-Sleep -Milliseconds 3500
+            update_fehlgeschlagen
+        }
+}
+
+function wpkt_herunterladen {
+    Clear-Host
+    startbildschirm
+        Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "    ║ Aktuellste Version (Windows Product Key Tool) wird heruntergeladen...    ║"
+        Write-Host "    ║                                                                          ║"
+        Write-Host "    ╚══════════════════════════════════════════════════════════════════════════╝"
+        $error.Clear()
+        try{[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            Invoke-WebRequest -Uri $wpkt_source -OutFile "$installpath\wpkt.zip"}
+        catch{
+            Start-Sleep -Milliseconds 1500
+            Write-Host "        ╔══════════════════════════════════════════════════════════════════════╗"
+            Write-Host "        ║ Das Windows Product Key Tool konnte nicht heruntergeladen werden.    ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ║     Bitte überprüfen Sie Ihre Internetverbindung und                 ║"
+            Write-Host "        ║     versuchen Sie es erneut!                                         ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ║     Sollten Sie kein Problem feststellen können, prüfen Sie bitte    ║"
+            Write-Host "        ║     auf GitHub, ob die Updateroutine ein Update erhalten hat.        ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ╚══════════════════════════════════════════════════════════════════════╝"
+            Start-Sleep -Milliseconds 3500
+            update_fehlgeschlagen
+        }
+}
+
+function btsu_herunterladen {
+    Clear-Host
+    startbildschirm
+        Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "    ║ Aktuellste Version (Win-SystemUser) wird heruntergeladen...              ║"
+        Write-Host "    ║                                                                          ║"
+        Write-Host "    ╚══════════════════════════════════════════════════════════════════════════╝"
+        $error.Clear()
+        try{[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            Invoke-WebRequest -Uri $btsu_source -OutFile "$installpath\btsu.zip"}
+        catch{
+            Start-Sleep -Milliseconds 1500
+            Write-Host "        ╔══════════════════════════════════════════════════════════════════════╗"
+            Write-Host "        ║ Win-SystemUser konnte nicht heruntergeladen werden.                  ║"
             Write-Host "        ║                                                                      ║"
             Write-Host "        ║     Bitte überprüfen Sie Ihre Internetverbindung und                 ║"
             Write-Host "        ║     versuchen Sie es erneut!                                         ║"
@@ -68,16 +124,43 @@ function update_entpacken {
     Clear-Host
     startbildschirm
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "    ║ Update wird entpackt...                                                  ║"
+        Write-Host "    ║ Updates werden entpackt...                                               ║"
         Write-Host "    ║                                                                          ║"
         Write-Host "    ╚══════════════════════════════════════════════════════════════════════════╝"
         $error.Clear()
-        try{Unzip "$installpath\update.zip" "$installpath"}
+        try{Unzip "$installpath\wsi.zip" "$installpath"}
         catch{
             Start-Sleep -Milliseconds 1500
-            Remove-Item "$installpath\update.zip"
+            Remove-Item "$installpath\wsi.zip"
             Write-Host "        ╔══════════════════════════════════════════════════════════════════════╗"
-            Write-Host "        ║ Das Update konnte nicht entpackt werden.                             ║"
+            Write-Host "        ║ Das Windows Server Installtool konnte nicht entpackt werden.         ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ║     Bitte starten Sie dieses Script als Administrator erneut!        ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ╚══════════════════════════════════════════════════════════════════════╝"
+            Start-Sleep -Milliseconds 3500
+            update_fehlgeschlagen
+        }
+        try{Unzip "$installpath\wpkt.zip" "$installpath"}
+        catch{
+            Start-Sleep -Milliseconds 1500
+            Remove-Item "$installpath\wpkt.zip"
+            Write-Host "        ╔══════════════════════════════════════════════════════════════════════╗"
+            Write-Host "        ║ Das Windows Product Key Tool konnte nicht entpackt werden.           ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ║     Bitte starten Sie dieses Script als Administrator erneut!        ║"
+            Write-Host "        ║                                                                      ║"
+            Write-Host "        ╚══════════════════════════════════════════════════════════════════════╝"
+            Start-Sleep -Milliseconds 3500
+            update_fehlgeschlagen
+        }
+        try{Unzip "$installpath\btsu.zip" "$installpath"}
+        catch{
+            Start-Sleep -Milliseconds 1500
+            Remove-Item "$installpath\btsu.zip"
+            Write-Host ""
+            Write-Host "        ╔══════════════════════════════════════════════════════════════════════╗"
+            Write-Host "        ║ Win-SystemUser konnte nicht entpackt werden.                         ║"
             Write-Host "        ║                                                                      ║"
             Write-Host "        ║     Bitte starten Sie dieses Script als Administrator erneut!        ║"
             Write-Host "        ║                                                                      ║"
@@ -86,14 +169,16 @@ function update_entpacken {
             update_fehlgeschlagen
         }
         Start-Sleep -Milliseconds 1000
-        Remove-Item "$installpath\update.zip"
+        Remove-Item "$installpath\wsi.zip"
+        Remove-Item "$installpath\wpkt.zip"
+        Remove-Item "$installpath\btsu.zip"
 }
 
 function update_installieren {
     Clear-Host
     startbildschirm
         Write-Host "    ╔══════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "    ║ Update wird installiert...                                               ║"
+        Write-Host "    ║ Updates werden installiert...                                            ║"
         Write-Host "    ║                                                                          ║"
         Write-Host "    ╚══════════════════════════════════════════════════════════════════════════╝"
         Remove-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\update.ps1"
@@ -102,6 +187,8 @@ function update_installieren {
         New-Item "$installpath\scripts\" -ItemType directory | Out-Null
         Move-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\scripts\*" "$installpath\scripts\" -Force
         Move-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\*" "$installpath" -Force
+        Move-Item "$installpath\Windows-Product-Key-Tool-master\Windows-Product-Key-Tool.ps1" "$installpath\scripts\tool_productkey.ps1"
+        Move-Item "$installpath\Win-SystemUser-master\Win-SystemUser\Be_the_System.ps1" "$installpath\scripts\script_win-systemUser.ps1"
 }
 
 function update_aufraeumen {
@@ -111,14 +198,10 @@ function update_aufraeumen {
         Write-Host "    ║ Aufräumen...                                                             ║"
         Write-Host "    ║                                                                          ║"
         Write-Host "    ╚══════════════════════════════════════════════════════════════════════════╝"
-        Remove-Item "$installpath\Windows-Server-Installtool-master\Windows-Server-Installtool\" -Recurse
-        Remove-Item "$installpath\Windows-Server-Installtool-master\.gitattributes"
-        Remove-Item "$installpath\Windows-Server-Installtool-master\.gitignore"
-        Remove-Item "$installpath\Windows-Server-Installtool-master\_config.yml"
-        Remove-Item "$installpath\Windows-Server-Installtool-master\Geplante Features.txt"
-        Remove-Item "$installpath\Windows-Server-Installtool-master\README.md"
         Start-Sleep -Milliseconds 1000
-        Remove-Item "$installpath\Windows-Server-Installtool-master\"
+        Remove-Item "$installpath\Windows-Server-Installtool-master\" -Recurse
+        Remove-item "$installpath\Windows-Product-Key-Tool-master\" -Recurse
+        Remove-Item "$installpath\Win-SystemUser-master\" -Recurse
 }
 
 function update_fertigstellen {
@@ -172,7 +255,11 @@ if($installpath -like "*\GitHub\Windows-Server-Installtool\*") {
         [Environment]::Exit(1)
 } else {
     Start-Sleep -Milliseconds  500
-    update_herunterladen
+    wsi_herunterladen
+    Start-Sleep -Milliseconds 1500
+    wpkt_herunterladen
+    Start-Sleep -Milliseconds 1500
+    btsu_herunterladen
     Start-Sleep -Milliseconds 1500
     update_entpacken
     Start-Sleep -Milliseconds  500
