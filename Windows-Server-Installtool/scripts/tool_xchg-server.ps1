@@ -2,12 +2,12 @@
     ###     Coded by: Simon Fieber     ###
     ###     Visit:  simonfieber.it     ###
 
-cls
+Clear-Host
 
 ### Startbildschirm ###
     function startbildschirm {
         Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server-Manager Tool v2.0.9α                                          ║"
+        Write-Host "║ Windows Exchange-Server Tool                                                 ║"
         Write-Host "║                                                                              ║"
         Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
     }
@@ -15,16 +15,16 @@ cls
 ### Menü ###
     function menue {
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "   ║ Welche Rollen möchten Sie verwalten?                                      ║"
-        Write-Host "   ╠════════════════════════════════════════                                   ║"
+        Write-Host "   ║ Welche möchten Sie tun?                                                   ║"
+        Write-Host "   ╠═══════════════════════════                                                ║"
         Write-Host "   ║                                                                           ║"
-        Write-Host "   ║ [ 1 ] Active Directory               ║ [  8 ] .NET Framework 3.5          ║"
-        Write-Host "   ║ [ 2 ] DHCP-Server                    ║ [  9 ] .NET Framework $NET4          ║"
-        Write-Host "   ║ [ 3 ] DNS-Server                     ║ [ 10 ] Windows Server Sicherung    ║"
-        Write-Host "   ║ [ 4 ] Hyper-V                        ║ [ 11 ] Exchange Server             ║"
-        Write-Host "   ║ [ 5 ] Remotedesktopdienste           ║                                    ║"
-        Write-Host "   ║ [ 6 ] Webserver (IIS)                ║                                    ║"
-        Write-Host "   ║ [ 7 ] Windows Server Update Services ║                                    ║"
+        Write-Host "   ║ [ 1 ] Mailbox-Statistiken            ║ [    ]                             ║"
+        Write-Host "   ║ [   ]                                ║ [    ]                             ║"
+        Write-Host "   ║ [   ]                                ║ [    ]                             ║"
+        Write-Host "   ║ [   ]                                ║                                    ║"
+        Write-Host "   ║ [   ]                                ║                                    ║"
+        Write-Host "   ║ [   ]                                ║                                    ║"
+        Write-Host "   ║ [   ]                                ║                                    ║"
         Write-Host "   ╠══════════════════════════════════════╩════════════════════════════════════╣"
         Write-Host "   ║ [ 0 ] Windows neustarten                                                  ║"
         Write-Host "   ║ [ X ] Zurück zum WSI-Tool                                                 ║"
@@ -34,7 +34,7 @@ cls
 ### Menüauswahl ###
 function menueauswahl {
     do {
-        cls
+        Clear-Host
         startbildschirm
         menue
             Write-Host ""
@@ -42,25 +42,38 @@ function menueauswahl {
 
             switch ($input) {
                 '0' {neustarten}
-                '1' {entwicklung}
+                '1' {xchg-mboxstats}
                 '2' {entwicklung}
                 '3' {entwicklung}
                 '4' {entwicklung}
                 '5' {entwicklung}
                 '6' {entwicklung}
                 '7' {entwicklung}
-                '8' {netframework35}
-                '9' {netframework45}
+                '8' {entwicklung}
+                '9' {entwicklung}
                 '10' {entwicklung}
-                '11' {xchg-server}
                 'x' {wsitool}
             } pause }
         until ($input -eq 'x')
 }
 
+### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
+function Get-ScriptDirectory {
+    $Invocation = (Get-Variable MyInvocation -Scope 1).Value
+    Split-Path $Invocation.MyCommand.Path
+}
+ 
+$installpath = Get-ScriptDirectory
+$scriptpath = "\tool_server.ps1"
+$restart_scriptpath = "\script_neustart.ps1"
+$xchg_mboxstats_scriptpath = "\script_xchg-mboxstats.ps1"
+$fullscriptpath = $installpath + $scriptpath
+$restart_fullscriptpath = $installpath + $restart_scriptpath
+$xchg_mboxstats_fullscriptpath = $installpath + $xchg_mboxstats_scriptpath
+
 ### .NET Framework 3.5 ###
-function netframework35 {
-    cls
+function xchg-mboxstats {
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -68,7 +81,7 @@ function netframework35 {
             {
                 $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
                 $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
-                $script = $netframework35_fullscriptpath
+                $script = $xchg_mboxstats_fullscriptpath
                 $prm = $script
                     foreach($a in $args) {
                         $prm += ' ' + $a
@@ -80,12 +93,12 @@ function netframework35 {
             }
     ### Falls Adminrechte nicht erfordert werden können, ###
     ### soll das Script trotzdem ausgeführt werden.      ###
-    & $netframework35_fullscriptpath
+    & $xchg_mboxstats_fullscriptpath
 }
 
 ### .NET Framework 4.5 ###
 function netframework45 {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
@@ -108,51 +121,8 @@ function netframework45 {
     & $netframework45_fullscriptpath
 }
 
-### Root-Verzeichnis ermitteln, zum öffnen des Programmcodes ###
-function Get-ScriptDirectory {
-    $Invocation = (Get-Variable MyInvocation -Scope 1).Value
-    Split-Path $Invocation.MyCommand.Path
-}
- 
-$installpath = Get-ScriptDirectory
-$scriptpath = "\tool_server.ps1"
-$restart_scriptpath = "\script_neustart.ps1"
-$netframework35_scriptpath = "\script_netframework35.ps1"
-$netframework45_scriptpath = "\script_netframework45.ps1"
-$xchgserver_scriptpath = "\tool_xchg-server.ps1"
-$fullscriptpath = $installpath + $scriptpath
-$restart_fullscriptpath = $installpath + $restart_scriptpath
-$netframework35_fullscriptpath = $installpath + $netframework35_scriptpath
-$netframework45_fullscriptpath = $installpath + $netframework45_scriptpath
-$xchgserver_fullscriptpath = $installpath + $xchgserver_scriptpath
-
-### Exchange Server ###
-function xchg-server {
-    cls
-        $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
-        $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
-        if(!$princ.IsInRole( `
-            [System.Security.Principal.WindowsBuiltInRole]::Administrator))
-            {
-                $powershell = [System.Diagnostics.Process]::GetCurrentProcess()
-                $psi = New-Object System.Diagnostics.ProcessStartInfo $powerShell.Path
-                $script = $xchgserver_fullscriptpath
-                $prm = $script
-                    foreach($a in $args) {
-                        $prm += ' ' + $a
-                    }
-                $psi.Arguments = $prm
-                $psi.Verb = "runas"
-                [System.Diagnostics.Process]::Start($psi) | Out-Null
-                return;
-            }
-    ### Falls Adminrechte nicht erfordert werden können, ###
-    ### soll das Script trotzdem ausgeführt werden.      ###
-    & $xchgserver_fullscriptpath
-}
-
 function entwicklung {
-cls
+Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Hinweis                                                                   ║"
@@ -167,7 +137,7 @@ cls
 
 ### Zurück zum Windows Server Installtool ###
 function wsitool {
-    cls
+    Clear-Host
     startbildschirm
         Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
         Write-Host "   ║ Windows Server Installtool                                                ║"
@@ -201,7 +171,7 @@ function wsitool {
 
 ### Windows neustarten ###
 function neustarten {
-    cls
+    Clear-Host
         $identity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
         $princ = New-Object System.Security.Principal.WindowsPrincipal($identity)
         if(!$princ.IsInRole( `
