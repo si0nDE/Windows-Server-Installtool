@@ -23,7 +23,8 @@ function hyperv {
             Write-Host "   ║                                                                           ║"
             Write-Host "   ║ Was möchten Sie tun?                                                      ║"
             Write-Host "   ║                                                                           ║"
-            Write-Host "   ║ [ 1 ] Virtuelle Maschine erstellen                                        ║"
+            Write-Host "   ║ [ 1 ] Virtuellen Switch erstellen                                         ║"
+            Write-Host "   ║ [ 2 ] Virtuelle Maschine erstellen                                        ║"
             Write-Host "   ║                                                                           ║"
             Write-Host "   ╠═══════════════════════════════════════════════════════════════════════════╣"
             Write-Host "   ║ [ X ] Zurück zum Hauptmenü                                                ║"
@@ -33,11 +34,68 @@ function hyperv {
             $input = Read-Host "Bitte wählen Sie"
 
             switch ($input) {
-                '1' {hyperv-createVM}
+                '1' {hyperv-createVSwitch}
+                '2' {hyperv-createVM}
                 'x' {wsitool} # Zurück ins Hauptmenü #
                 '0' {wsitool} # Zurück ins Hauptmenü #
             } pause }
         until ($input -eq 'x')
+}
+
+### Virtuellen Switch erstellen ###
+function hyperv-createVSwitch {
+    Clear-Host
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hyper-V                                                                   ║"
+        Write-Host "   ╠═══════════                                                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Wie soll der neue virtuelle Switch heißen?                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
+        Write-Host ""
+        $SwitchName = Read-Host "Name"
+        Start-Sleep -Milliseconds 1500
+
+    Clear-Host
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hyper-V                                                                   ║"
+        Write-Host "   ╠═══════════                                                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Welches Netzwerk-Interface soll verwendet werden?                         ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║    Geben Sie bitte den Namen in der ersten Spalte ein!                    ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ╚═══════════════════════════════════════════════════════════════════════════╝"
+        Write-Host ""
+        $NetAdapter = Read-Host "Name"
+        Start-Sleep -Milliseconds 1500
+    
+    Clear-Host
+    startbildschirm
+        Write-Host "   ╔═══════════════════════════════════════════════════════════════════════════╗"
+        Write-Host "   ║ Hyper-V                                                                   ║"
+        Write-Host "   ╠═══════════                                                                ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ Wird beim eingesetzten Interface ein NIC-Team verwendet?                  ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║    Unsicher?                                                              ║"
+        Write-Host "   ║    Dann verwenden Sie mit hoher Wahrscheinlichkeit kein NIC-Team.         ║"
+        Write-Host "   ║                                                                           ║"
+        Write-Host "   ║ [ 1 ] Ja                           ║ [ 0 ] Nein (Standard)                ║"
+        Write-Host "   ║                                    ║                                      ║"
+        Write-Host "   ╚════════════════════════════════════╩══════════════════════════════════════╝"
+        Write-Host ""
+        $input = Read-Host "Bitte wählen Sie"
+
+        switch ($input) {
+            '1' {New-VMSwitch -Name $SwitchName -NetAdapterName $NetAdapter -AllowNetLBFOTEAMS $true -AllowManagementOS $true}
+            '2' {New-VMSwitch -Name $SwitchName -NetAdapterName $NetAdapter}
+        } until ($input -eq '1,2')
+        Start-Sleep -Milliseconds 1500
+
+        New-VMSwitch -Name $SwitchName -NetAdapterName $NetAdapter
 }
 
 ### Virtuelle Maschine erstellen ###

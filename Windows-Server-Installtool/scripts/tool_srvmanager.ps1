@@ -7,7 +7,7 @@ cls
 ### Startbildschirm ###
     function startbildschirm {
         Write-Host "╔══════════════════════════════════════════════════════════════════════════════╗"
-        Write-Host "║ Windows Server-Manager Tool v2.0.9α                                          ║"
+        Write-Host "║ Windows Server-Manager Tool v2.0.10α                                         ║"
         Write-Host "║                                                                              ║"
         Write-Host "╚══════════════════════════════════════════════════════════════════════════════╝"
     }
